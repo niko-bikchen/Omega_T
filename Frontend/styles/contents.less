@@ -23,18 +23,22 @@
 
         .form-control {
             border-radius: 0;
-            font-family: sans-serif;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 1.2em;
         }
 
         #from {
+
             #from_label {
-                color: @mainColor;
-                font-size: 1.5em;
-                text-align: right;
-                padding-right: 10px!important;
-                font-family: Galaxy;
                 padding-top: 5px;
-                padding-right: 0;
+                padding-right: 8px;
+                padding-left: 0;
+
+                color: @mainColor;
+                font-family: Galaxy, sans-serif;
+                font-size: 1.5em;
+
+                text-align: left;
             }
 
             #from_starport {
@@ -45,23 +49,46 @@
                     border-left: none;
                     border-right: none;
                 }
+
+                .form-control {
+                    padding-right: 50px;
+
+                    background-image: url('../assets/images/finish.png');
+                    background-position: right;
+                    background-size: 8%;
+                    background-repeat: no-repeat;
+                    background-position-x: 99%;
+                }
             }
 
             #from_planet {
                 padding-right: 0;
                 padding-left: 0;
+
+                .form-control {
+                    padding-right: 50px;
+
+                    background-image: url('../assets/images/planet.png');
+                    background-position: right;
+                    background-size: 10%;
+                    background-repeat: no-repeat;
+                    background-position-x: 97%;
+                }
             }
         }
 
         #to {
+
             #to_label {
-                text-align: right;
-                color: @mainColor;
-                font-family: Galaxy;
-                font-size: 1.5em;
                 padding-top: 0px;
-                padding-right: 10px!important;
+                padding-right: 19px;
                 padding-left: 0;
+
+                color: @mainColor;
+                font-family: Galaxy, sans-serif;
+                font-size: 1.5em;
+                
+                text-align: right;
             }
 
             #to_starport {
@@ -72,27 +99,66 @@
                     border-left: none;
                     border-right: none;
                 }
+
+                .form-control {
+                    padding-right: 50px;
+
+                    background-image: url('../assets/images/finish.png');
+                    background-position: right;
+                    background-size: 8%;
+                    background-repeat: no-repeat;
+                    background-position-x: 99%;
+                }
             }
 
             #to_planet {
                 padding-right: 0;
                 padding-left: 0;
+
+                .form-control {
+                    padding-right: 50px;
+
+                    background-image: url('../assets/images/planet.png');
+                    background-position: right;
+                    background-size: 10%;
+                    background-repeat: no-repeat;
+                    background-position-x: 97%;
+                }
             }
         }
 
-        #confirm_btn {
+        #search_btn {
             margin-top: 15px;
 
-            .btn {
-                width: 20%;
-                height: 110%;
+            width: 20%;
+            height: 110%;
 
-                color: white;
-                font-size: 1.7em;
+            color: white;
+            font-size: 1.7em;
 
-                border: none;
-                background-color: @mainColor;
-            }
+            border: none;
+            background-color: @mainColor;
+
+            background-image: url('../assets/images/tie.png');
+            background-position-x: 130%;
+            background-position-y: 30%;
+            background-size: 20%;
+            background-repeat: no-repeat;
+
+        }
+
+        #search_btn:hover{
+            color: white;
+
+            background-position-x: -30%;
+
+            transition: 1s all ease-in-out;
+        }
+
+        #search_btn:active {
+            background-color: darkblue!important;
+
+            transition: .2s all ease-in-out;
         }
     }
 }
