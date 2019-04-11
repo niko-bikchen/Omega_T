@@ -1,0 +1,69 @@
+<% include common_views/header.ejs %>
+
+    <div class="container" id="contents">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12" id="logo"><img src="assets/images/logo.png" alt="Company logo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row" id="search_bar">
+                    <span id="from" class="col-md-12">
+                        <span class="row">
+                            <span class="col-md-1" id="from_label">From: </span>
+                            <span class="col-md-5" id="from_planet">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Planet</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </span>
+                            <span class="col-md-6" id="from_starport">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Starport</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </span>
+                        </span>
+                    </span>
+                    <span id="to" class="col-md-12">
+                        <span class="row">
+                            <span class="col-md-1" id="to_label">To: </span>
+                            <span class="col-md-5" id="to_planet">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Planet</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </span>
+                            <span class="col-md-6" id="to_starport">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-default">Starport</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </span>
+                        </span>
+                    </span>
+                    <span class="col-md-12">
+                        <button id="search_btn" class="btn">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% include common_views/footer.ejs %>

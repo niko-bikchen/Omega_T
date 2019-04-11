@@ -1,0 +1,30 @@
+{
+  "name": "omega_t",
+  "version": "1.0.0",
+  "description": "modules for the project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niko-bikchen/Omega_T.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niko-bikchen/Omega_T/issues"
+  },
+  "homepage": "https://github.com/niko-bikchen/Omega_T#readme",
+  "devDependencies": {
+    "basil.js": "^0.4.10",
+    "body-parser": "^1.18.3",
+    "brfs": "^2.0.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "grunt": "^1.0.4",
+    "grunt-browserify": "^5.3.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "morgan": "^1.9.1"
+  }
+}
