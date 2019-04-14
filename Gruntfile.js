@@ -25,6 +25,10 @@ module.exports = function(grunt) {
                 src:        'Frontend/src/main.js',
                 dest:       'Frontend/web/assets/scripts/boss.js'
             }
+            // task2: {
+            //     src:        'Frontend/src/t.js',
+            //     dest:       'Frontend/web/assets/scripts/t.js'
+            // }
         }
     };
 
@@ -39,6 +43,8 @@ module.exports = function(grunt) {
             files: ['Frontend/src/**/*.js', 'Frontend/**/*.ejs'],
             //Які завдання виконувати під час зміни в файлах
             tasks: ['browserify:interstellar']
+            // tasks: ['browserify:task2']
+            
         }
     };
 
@@ -56,6 +62,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default',
         [
             'browserify:interstellar',
+
             //Інші завдання які необхідно виконати
         ]
     );
