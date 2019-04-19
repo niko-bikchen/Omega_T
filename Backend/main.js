@@ -11,13 +11,21 @@ function configureEndpoints(app) {
     var api = require('./api');
 
     //Налаштування URL за якими буде відповідати сервер
-    //Отримання списку піц
     app.get('/api/get-planets-list/', api.getPlanets);
+
+    app.get('/api/get-flights-list', api.getFlights);
+
+    app.get('/api/get-ships-list', api.getShips);
+
     app.post('/api/book-flight/', api.bookTicket);
 
     //Сторінки
     //Головна сторінка
     app.get('/', pages.main_page);
+
+    app.get('/login', pages.login_page);
+
+    app.get('/about', pages.about_page);
 
     //Сторінка замовлення
     app.get('/booking', pages.flight_booking_page);

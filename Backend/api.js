@@ -1,7 +1,17 @@
 var planets = require('./data/planets.js');
+var flights = require('./data/flights.js');
+var ships = require('./data/ships.js');
 
 exports.getPlanets = function(req, res) {
     res.send(planets);
+};
+
+exports.getShips = function(req, res) {
+    res.send(ships);
+};
+
+exports.getFlights = function(req, res) {
+    res.send(flights);
 };
 
 exports.bookTicket = function(req, res) {
