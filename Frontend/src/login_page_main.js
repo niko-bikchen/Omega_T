@@ -8,4 +8,9 @@ $(function(){
     }, 200)
     $('header #login_btn').attr('href', '/');
     $('header #login_btn').text('back');
+    $('header #login_btn').hover(function () {
+        $(this).css('background-image', 'url("../assets/images/another_space.jpg")');
+    }, function () {
+        $(this).css('background-image', 'none');
+    });
 });
