@@ -13,3 +13,7 @@ exports.about_page = function (req, res) {
 exports.flight_booking_page = function (req, res) {
     res.render('flight_booking_page');
 }
+
+exports.starmap = function (req, res) {
+    res.render('starmap');
+}
