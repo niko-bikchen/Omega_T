@@ -21,9 +21,19 @@ module.exports = function(grunt) {
             },
 
             //Збірка з назвою піца
-            interstellar: {
-                src:        'Frontend/src/main.js',
-                dest:       'Frontend/web/assets/scripts/boss.js'
+            main_page: {
+                src:        'Frontend/src/main_page_main.js',
+                dest:       'Frontend/web/assets/scripts/main_page_bundle.js'
+            },
+
+            login_page: {
+                src:        'Frontend/src/login_page_main.js',
+                dest:       'Frontend/web/assets/scripts/login_page_bundle.js'
+            },
+
+            about_page: {
+                src:        'Frontend/src/about_page_main.js',
+                dest:       'Frontend/web/assets/scripts/about_page_bundle.js'
             }
         }
     };
@@ -38,7 +48,9 @@ module.exports = function(grunt) {
             //На зміни в яких файлах реагувати
             files: ['Frontend/src/**/*.js', 'Frontend/**/*.ejs'],
             //Які завдання виконувати під час зміни в файлах
-            tasks: ['browserify:interstellar']
+            tasks: ['browserify:main_page'],
+            tasks: ['browserify:login_page'],
+            tasks: ['browserify:about_page']
         }
     };
 
@@ -55,7 +67,9 @@ module.exports = function(grunt) {
     //Список завданнь по замовчування
     grunt.registerTask('default',
         [
-            'browserify:interstellar',
+            'browserify:main_page',
+            'browserify:login_page',
+            'browserify:about_page'
             //Інші завдання які необхідно виконати
         ]
     );
