@@ -27,6 +27,8 @@ function configureEndpoints(app) {
 
     app.get('/about', pages.about_page);
 
+    app.get('/starmap', pages.starmap);
+
     //Сторінка замовлення
     app.get('/booking', pages.flight_booking_page);
 

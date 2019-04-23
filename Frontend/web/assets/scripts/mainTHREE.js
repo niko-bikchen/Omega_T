@@ -47,7 +47,7 @@ function init() {
 
 
   //  scene.add( mesh );
-    var suntexture=THREE.ImageUtils.loadTexture("assets/2k_sun.jpg");
+    var suntexture=THREE.ImageUtils.loadTexture("../assets/images/2k_sun.jpg");
         var sphereGeometry = new THREE.SphereGeometry(0.2,20,0.2);
         var sunMaterial=new THREE.MeshPhongMaterial( {
             emissiveMap:suntexture,
@@ -59,14 +59,14 @@ function init() {
 
 
 
-    var textures=[THREE.ImageUtils.loadTexture("assets/2k_earth_daymap.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_mars.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_venus_surface.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_jupiter.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_mercury.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_neptune.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_uranus.jpg"),
-        THREE.ImageUtils.loadTexture("assets/2k_saturn.jpg")]
+    var textures=[THREE.ImageUtils.loadTexture("../assets/images/2k_earth_daymap.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_mars.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_venus_surface.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_jupiter.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_mercury.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_neptune.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_uranus.jpg"),
+        THREE.ImageUtils.loadTexture("../assets/images/2k_saturn.jpg")]
 
     mercury=createPlanet(0.03,0.3,textures[4]);
     venus=createPlanet(0.15,0.7,textures[2]);
