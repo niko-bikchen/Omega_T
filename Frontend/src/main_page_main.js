@@ -6,13 +6,27 @@ $(function () {
     API.getPlanets(function (err, data) {
         if (!err) {
             let planets = [];
+            let starports = [];
             for (let i = 0; i < data.length; ++i) {
                 planets.push(data[i].name);
+                if ('starports' in data[i]) {
+                    starports = starports.concat(data[i].starports);
+                }
             }
-            $('#from_p').autocomplete({source: planets});
-            $('#to_p').autocomplete({source: planets});
+            $('#from_p').autocomplete({
+                source: planets
+            });
+            $('#to_p').autocomplete({
+                source: planets
+            });
+            $('#from_s').autocomplete({
+                source: starports
+            });
+            $('#to_s').autocomplete({
+                source: starports
+            });
         } else {
-            alert("An error occure while getting planets data");
+            alert("An error occured while getting planets data");
         }
     });
 
@@ -43,4 +57,5 @@ function setDate() {
     var date = year + "-" + month + "-" + day;
 
     $('#date').attr('value', date);
+    $('#date').attr('min', date);
 }
