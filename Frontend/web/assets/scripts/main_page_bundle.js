@@ -42,24 +42,54 @@ exports.bookTicket = function(fligh_info, callback) {
 
 var ejs = require('ejs');
 
-exports.login_window = ejs.compile("<div id=\"login_background\"></div>\r\n<div id=\"login_window\">\r\n    <form>\r\n        <div class=\"form-group\">\r\n            <label for=\"email_input\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"email_input\" aria-describedby=\"emailHelp\" placeholder=\"Your email\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"password_input\">Password</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"password_input\" placeholder=\"Your password\">\r\n        </div>\r\n        <div class=\"form-check\">\r\n            <input type=\"checkbox\" class=\"form-check-input\" id=\"remember_me\">\r\n            <label class=\"form-check-label\" for=\"remember_me\">Remeber me</label>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn btn-primary btn-lg btn-block\">Submit</button>\r\n    </from>\r\n</div>");
-exports.about_window = ejs.compile("<div id=\"about_background\"></div>\r\n<div id=\"about_window\">\r\n    <p>\r\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n    Fusce quis malesuada eros. Integer viverra at erat eu blandit.\r\n    Mauris consequat volutpat facilisis. Mauris at cursus ligula.\r\n    Mauris tempus ex mauris, non pretium arcu auctor ullamcorper.\r\n    Donec tristique nec lectus consequat auctor. Morbi aliquet posuere tellus sed viverra. \r\n    Vivamus dapibus mi id tortor tristique bibendum. Phasellus est lacus, rhoncus a sem a,\r\n    gravida venenatis augue. Nulla sodales turpis quis arcu hendrerit fermentum. \r\n    Nullam sit amet libero eget dui lobortis viverra id non risus. \r\n    Sed malesuada purus sed ex interdum aliquam. Praesent faucibus ultrices lacinia.\r\n     Proin laoreet mi non convallis fermentum. Nunc porta pretium scelerisque.\r\n    </p>\r\n    <img src=\"assets/images/logo.png\">\r\n    <button class=\"btn btn-primary btn-lg btn-block\">Back</button>\r\n</div>");
-exports.flight_preview = ejs.compile("<div class=\"fligh_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"time_details\">\r\n                        <span class=\"col-md-4\" id=\"time_start\"><%= flight.time_start %></span>\r\n                        <span class=\"col-md-4\" id=\"duration\">1</span>\r\n                        <span class=\"col-md-4\" id=\"time_end\"><%= flight.time_end %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"date_details\">\r\n                        <span class=\"col-md-6\" id=\"date_start\"><%= flight.date %></span>\r\n                        <span class=\"col-md-6\" id=\"date_end\"><%= flight.date %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"places_details\">\r\n                        <span class=\"col-md-6\" id=\"place_start\"><%= flight.start_planet %>-<%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6\" id=\"place_end\"><%= flight.destination_planet %>-<%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span id=\"flight_types\">\r\n                        <%if ('lux' in flight && 'standard' in flight) { %>\r\n                        \r\n                        <% } else if (!'lux' in flight) { %>\r\n\r\n                        <% } else if (!'standard' in flight) { %>\r\n                        \r\n                        <% } else { %>\r\n                        \r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-4 time_start\"><%= flight.time_start %></span>\r\n                        <span class=\"col-md-4 duration\">1</span>\r\n                        <span class=\"col-md-4 time_end\"><%= flight.time_end %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" class=\"date_details\">\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" class=\"places_details\">\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <%if ('lux' in flight && 'standard' in flight) { %>\r\n                        \r\n                        <% } else if (!'lux' in flight) { %>\r\n\r\n                        <% } else if (!'standard' in flight) { %>\r\n                        \r\n                        <% } else { %>\r\n                        \r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
 
 $(function () {
+
+    API.getPlanets(function (err, data) {
+        if (!err) {
+            let planets = [];
+            for (let i = 0; i < data.length; ++i) {
+                planets.push(data[i].name);
+            }
+            $('#from_p').autocomplete({source: planets});
+            $('#to_p').autocomplete({source: planets});
+        } else {
+            alert("An error occure while getting planets data");
+        }
+    });
+
     $('#search_btn').on('click', function () {
         API.getFlights(function (err, data) {
-            for (var i = 0; i < 2; ++i) {
-                var html = Templates.flight_preview({flight: data.flights[i]});
-                var $node = $(html);
-                $('body').append($node);
+            if (!err) {
+                for (var i = 0; i < 2; ++i) {
+                    var html = Templates.flight_preview({
+                        flight: data.flights[i]
+                    });
+                    var $node = $(html);
+                    $('#flights').append($node);
+                }
+            } else {
+                alert("An error occured while getting flights data");
             }
         });
     });
+
+    setDate();
 });
+
+function setDate() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = String(today.getMonth() + 1).padStart(2, '0');
+    var day = String(today.getDate()).padStart(2, '0');
+    var date = year + "-" + month + "-" + day;
+
+    $('#date').attr('value', date);
+}
 },{"./API":1,"./Templates":2}],4:[function(require,module,exports){
 
 },{}],5:[function(require,module,exports){

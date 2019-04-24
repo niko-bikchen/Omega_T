@@ -1,6 +1,6 @@
 var planets = [{
         id: 1,
-        name: "Oliv"
+        name: "Oliv",
     },
     {
         id: 2,

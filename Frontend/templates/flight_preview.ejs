@@ -1,29 +1,29 @@
-<div class="fligh_preview">
+<div class="flight_preview">
     <div class="row">
         <span class="col-md-3 planet"></span>
         <span class="col-md-6 flight_info">
             <span class="row">
                 <span class="col-md-12">
-                    <span class="row" id="time_details">
-                        <span class="col-md-4" id="time_start"><%= flight.time_start %></span>
-                        <span class="col-md-4" id="duration">1</span>
-                        <span class="col-md-4" id="time_end"><%= flight.time_end %></span>
+                    <span class="row time_details">
+                        <span class="col-md-4 time_start"><%= flight.time_start %></span>
+                        <span class="col-md-4 duration">1</span>
+                        <span class="col-md-4 time_end"><%= flight.time_end %></span>
                     </span>
                 </span>
                 <span class="col-md-12">
-                    <span class="row" id="date_details">
-                        <span class="col-md-6" id="date_start"><%= flight.date %></span>
-                        <span class="col-md-6" id="date_end"><%= flight.date %></span>
+                    <span class="row" class="date_details">
+                        <span class="col-md-6 date_start"><%= flight.date %></span>
+                        <span class="col-md-6 date_end"><%= flight.date %></span>
                     </span>
                 </span>
                 <span class="col-md-12">
-                    <span class="row" id="places_details">
-                        <span class="col-md-6" id="place_start"><%= flight.start_planet %>-<%= flight.start_starport %></span>
-                        <span class="col-md-6" id="place_end"><%= flight.destination_planet %>-<%= flight.destination_starport %></span>
+                    <span class="row" class="places_details">
+                        <span class="col-md-6 place_start"><%= flight.start_planet %> - <%= flight.start_starport %></span>
+                        <span class="col-md-6 place_end"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>
                     </span>
                 </span>
                 <span class="col-md-12">
-                    <span id="flight_types">
+                    <span class="flight_types">
                         <%if ('lux' in flight && 'standard' in flight) { %>
                         
                         <% } else if (!'lux' in flight) { %>

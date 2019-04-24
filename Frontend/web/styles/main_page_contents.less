@@ -59,12 +59,20 @@
                     background-size: 8%;
                     background-repeat: no-repeat;
                     background-position-x: 99%;
+
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
                 }
             }
 
             #from_planet {
                 padding-right: 0;
                 padding-left: 0;
+
+                .input-group-text {
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
 
                 .form-control {
                     padding-right: 50px;
@@ -88,7 +96,7 @@
                 color: @mainColor;
                 font-family: Galaxy, sans-serif;
                 font-size: 1.8vw;
-                
+
                 text-align: right;
             }
 
@@ -109,12 +117,20 @@
                     background-size: 8%;
                     background-repeat: no-repeat;
                     background-position-x: 99%;
+
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
                 }
             }
 
             #to_planet {
                 padding-right: 0;
                 padding-left: 0;
+
+                .input-group-text {
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
 
                 .form-control {
                     padding-right: 50px;
@@ -148,7 +164,7 @@
 
         }
 
-        #search_btn:hover{
+        #search_btn:hover {
             color: white;
 
             background-position-x: -30%;
@@ -157,9 +173,19 @@
         }
 
         #search_btn:active {
-            background-color: darkblue!important;
+            background-color: darkblue !important;
 
             transition: .2s all ease-in-out;
+        }
+
+        #date {
+            font-family: Galaxy;
+            font-size: 1.4em;
+            color: @mainColor;
+            text-align: center;
+            border-style: none;
+            border: 2px solid @mainColor;
+            border-radius: 10px;
         }
     }
 }

@@ -20,7 +20,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Planet</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                    <input type="text" id="from_p" class="form-control" aria-label="Sizing example input"
                                         aria-describedby="inputGroup-sizing-default">
                                 </div>
                             </span>
@@ -29,7 +29,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Starport</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                    <input type="text" id="from_s" class="form-control" aria-label="Sizing example input"
                                         aria-describedby="inputGroup-sizing-default">
                                 </div>
                             </span>
@@ -43,7 +43,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Planet</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                    <input type="text" id="to_p" class="form-control" aria-label="Sizing example input"
                                         aria-describedby="inputGroup-sizing-default">
                                 </div>
                             </span>
@@ -52,16 +52,22 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Starport</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                    <input type="text" id="to_s" class="form-control" aria-label="Sizing example input"
                                         aria-describedby="inputGroup-sizing-default">
                                 </div>
                             </span>
                         </span>
                     </span>
                     <span class="col-md-12">
+                        <input id="date" type="date">
+                    </span>
+                    <span class="col-md-12">
                         <button id="search_btn" class="btn">Search</button>
                     </span>
                 </div>
+            </div>
+            
+            <div class="col-md-12" id="flights">
             </div>
         </div>
     </div>
