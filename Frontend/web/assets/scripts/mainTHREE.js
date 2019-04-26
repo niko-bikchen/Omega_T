@@ -40,7 +40,7 @@ function createPlanet(radius, distance,texture) {
 function init() {
 
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.z = 1;
+    camera.position.z = 0.5;
 
     scene = new THREE.Scene();
 

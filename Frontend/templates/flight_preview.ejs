@@ -5,19 +5,27 @@
             <span class="row">
                 <span class="col-md-12">
                     <span class="row time_details">
-                        <span class="col-md-4 time_start"><%= flight.time_start %></span>
-                        <span class="col-md-4 duration">1</span>
-                        <span class="col-md-4 time_end"><%= flight.time_end %></span>
+                        <span class="col-md-6 label label_start">Departure time:</span>
+                        <span class="col-md-6 label label_destination">Arrival time:</span>
+                        <span class="col-md-3 time_start"><%= flight.time_start %> UST</span>
+                        <span class="col-md-2 arrow">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>
+                        <span class="col-md-2 duration">1 UST</span>
+                        <span class="col-md-2 arrow">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>
+                        <span class="col-md-3 time_end"><%= flight.time_end %> UST</span>
                     </span>
                 </span>
                 <span class="col-md-12">
-                    <span class="row" class="date_details">
-                        <span class="col-md-6 date_start"><%= flight.date %></span>
-                        <span class="col-md-6 date_end"><%= flight.date %></span>
+                    <span class="row date_details">
+                        <span class="col-md-6 label label_start">Departure date:</span>
+                        <span class="col-md-6 label label_destination">Arrival date:</span>
+                        <span class="col-md-6 date_start"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>
+                        <span class="col-md-6 date_end"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>
                     </span>
                 </span>
                 <span class="col-md-12">
-                    <span class="row" class="places_details">
+                    <span class="row places_details">
+                        <span class="col-md-6 label label_start">Departure point:</span>
+                        <span class="col-md-6 label label_destination">Arrival point:</span>
                         <span class="col-md-6 place_start"><%= flight.start_planet %> - <%= flight.start_starport %></span>
                         <span class="col-md-6 place_end"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>
                     </span>

@@ -145,7 +145,7 @@
         }
 
         #search_btn {
-            margin-top: 15px;
+            margin-top: 25px;
 
             width: 20%;
             height: 110%;
@@ -178,14 +178,25 @@
             transition: .2s all ease-in-out;
         }
 
-        #date {
+
+        #date_container {
             font-family: Galaxy;
-            font-size: 1.4em;
-            color: @mainColor;
             text-align: center;
-            border-style: none;
-            border: 2px solid @mainColor;
-            border-radius: 10px;
+
+            #date {
+                margin-top: 10px;
+                color: @mainColor;
+                text-align: center;
+                font-size: 1.4em;
+                border-style: none;
+                border: 2px solid @mainColor;
+                border-radius: 10px;
+            }
+
+            span {
+                color: @mainColor;
+                font-size: 1.8vw;
+            }
         }
     }
 }

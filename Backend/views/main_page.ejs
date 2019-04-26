@@ -2,14 +2,12 @@
 
     <div class="container" id="main_page_contents">
         <div class="row">
-
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12" id="logo"><img src="assets/images/logo.png" alt="Company logo">
                     </div>
                 </div>
             </div>
-
             <div class="col-md-12">
                 <div class="row" id="search_bar">
                     <span id="from" class="col-md-12">
@@ -58,7 +56,9 @@
                             </span>
                         </span>
                     </span>
-                    <span class="col-md-12">
+                    <span id="date_container" class="col-md-12">
+                        <span>Pick a date: </span>
+                        <br>
                         <input id="date" type="date">
                     </span>
                     <span class="col-md-12">
@@ -66,8 +66,28 @@
                     </span>
                 </div>
             </div>
-            
+        </div>
+    </div>
+    <div id="flights_container" class="container">
+        <div class="row">
             <div class="col-md-12" id="flights">
+                <div id="no_flights_label">
+                    <p>
+                        <span>Sorry.</span>
+                        <br> 
+                        We couldn't find any flights for the destenitations you have just specified.
+                        <br>
+                        They are absent for now, but may appear later.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer_container" class="container-fluid">
+        <div class="row">
+            <div id="footer" class="col-md-12">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam at iure quidem dolorum deserunt hic, velit
+                aliquam consequatur! Commodi voluptatibus et quam excepturi aperiam autem! Optio hic architecto doloribus. Esse.
             </div>
         </div>
     </div>

@@ -42,12 +42,28 @@ exports.bookTicket = function(fligh_info, callback) {
 
 var ejs = require('ejs');
 
-exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-4 time_start\"><%= flight.time_start %></span>\r\n                        <span class=\"col-md-4 duration\">1</span>\r\n                        <span class=\"col-md-4 time_end\"><%= flight.time_end %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" class=\"date_details\">\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" class=\"places_details\">\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <%if ('lux' in flight && 'standard' in flight) { %>\r\n                        \r\n                        <% } else if (!'lux' in flight) { %>\r\n\r\n                        <% } else if (!'standard' in flight) { %>\r\n                        \r\n                        <% } else { %>\r\n                        \r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <%if ('lux' in flight && 'standard' in flight) { %>\r\n                        \r\n                        <% } else if (!'lux' in flight) { %>\r\n\r\n                        <% } else if (!'standard' in flight) { %>\r\n                        \r\n                        <% } else { %>\r\n                        \r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
 
+var $input_from_p = $('#from_p');
+var $input_from_s = $('#from_s');
+var $input_to_p = $('#to_p');
+var $input_to_s = $('#to_s');
+
+var flights_list = null;
+var planets_list = null;
+
 $(function () {
+
+    API.getFlights(function (err, data) {
+        if (!err) {
+            flights_list = data;
+        } else {
+            alert("An error occured while getting flights data");
+        }
+    });
 
     API.getPlanets(function (err, data) {
         if (!err) {
@@ -59,43 +75,64 @@ $(function () {
                     starports = starports.concat(data[i].starports);
                 }
             }
-            $('#from_p').autocomplete({
+            $input_from_p.autocomplete({
                 source: planets
             });
-            $('#to_p').autocomplete({
+            $input_to_p.autocomplete({
                 source: planets
             });
-            $('#from_s').autocomplete({
+            $input_from_s.autocomplete({
                 source: starports
             });
-            $('#to_s').autocomplete({
+            $input_to_s.autocomplete({
                 source: starports
             });
+
+            planets_list = data;
         } else {
             alert("An error occured while getting planets data");
         }
     });
 
     $('#search_btn').on('click', function () {
-        API.getFlights(function (err, data) {
-            if (!err) {
-                for (var i = 0; i < 2; ++i) {
-                    var html = Templates.flight_preview({
-                        flight: data.flights[i]
-                    });
-                    var $node = $(html);
-                    $('#flights').append($node);
-                }
-            } else {
-                alert("An error occured while getting flights data");
-            }
+        var start_planet = $input_from_p.val();
+        var start_starport = $input_from_s.val();
+
+        var destination_planet = $input_to_p.val();
+        var destination_starport = $input_to_s.val();
+
+        var date = $("#date").val();
+
+        var available_flights = flights_list.flights.filter(function (flight) {
+            return flight.start_planet == start_planet && flight.start_starport == start_starport &&
+                flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
+                date == (flight.date_start.year + "-0" + flight.date_start.month + "-" + flight.date_start.day);
         });
+
+        $("#flights_container").css("background-color", "white");
+        $("#flights_container").css("border", "1px solid #000f94d7");
+        $(".flight_preview").remove();
+
+        if (available_flights.length > 0) {
+            $("#no_flights_label").css("display", "none");
+
+            available_flights.forEach(function (flight) {
+                var html_code = Templates.flight_preview({
+                    flight
+                });
+                var $node = $(html_code);
+
+                $("#flights").append($node);
+            });
+        } else {
+            $("#no_flights_label").css("display", "initial");
+        }
     });
 
-    setDate();
+    setDateForDatepicker();
 });
 
-function setDate() {
+function setDateForDatepicker() {
     var today = new Date();
     var year = today.getFullYear();
     var month = String(today.getMonth() + 1).padStart(2, '0');
