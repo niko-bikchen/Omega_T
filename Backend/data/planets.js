@@ -6,6 +6,7 @@ var planets = [{
     {
         id: 2,
         name: "Phiri 8GV2",
+        starports : ["Hello"],
     },
     {
         id: 3,

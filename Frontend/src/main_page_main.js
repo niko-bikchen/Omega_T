@@ -11,6 +11,10 @@ var planets_list = null;
 
 $(function () {
 
+    $input_from_s.prop("disabled", true);
+    $input_to_p.prop("disabled", true);
+    $input_to_s.prop("disabled", true);
+
     API.getFlights(function (err, data) {
         if (!err) {
             flights_list = data;
@@ -22,29 +26,44 @@ $(function () {
     API.getPlanets(function (err, data) {
         if (!err) {
             let planets = [];
-            let starports = [];
+
             for (let i = 0; i < data.length; ++i) {
                 planets.push(data[i].name);
-                if ('starports' in data[i]) {
-                    starports = starports.concat(data[i].starports);
-                }
             }
+
             $input_from_p.autocomplete({
-                source: planets
+                source: planets,
+                select: function () {
+                    var e = jQuery.Event("keypress");
+                    e.which = 13;
+                    $input_from_p.trigger(e);
+                }
             });
+
             $input_to_p.autocomplete({
-                source: planets
-            });
-            $input_from_s.autocomplete({
-                source: starports
-            });
-            $input_to_s.autocomplete({
-                source: starports
+                source: planets,
+                select: function () {
+                    var e = jQuery.Event("keypress");
+                    e.which = 13;
+                    $input_to_p.trigger(e);
+                }
             });
 
             planets_list = data;
         } else {
             alert("An error occured while getting planets data");
+        }
+    });
+
+    $input_from_p.keypress(function (event) {
+        if (event.which == 13) {
+            hendleInput($input_from_p, $input_from_s, $input_to_p, "green");
+        }
+    });
+
+    $input_to_p.keypress(function (event) {
+        if (event.which == 13) {
+            hendleInput($input_to_p, $input_to_s, null, "rgb(221, 145, 3)");
         }
     });
 
@@ -95,4 +114,71 @@ function setDateForDatepicker() {
 
     $('#date').attr('value', date);
     $('#date').attr('min', date);
+}
+
+function planetExists(planet_name) {
+
+    var id = -1;
+
+    planets_list.forEach(function (planet) {
+        if (planet.name == planet_name) {
+            id = planet.id;
+        }
+    });
+
+    return id;
+}
+
+function hendleInput($from_p, $from_s, $to_p, color) {
+    var id = planetExists($from_p.val());
+
+    if (id > 0) {
+        $("#error_message").css("display", "none");
+        $from_p.css("border", "1px solid " + color);
+        $from_s.prop("disabled", false);
+
+        $from_s.autocomplete({
+            source: planets_list[id - 1].starports,
+            select: function () {
+                var e = jQuery.Event("keypress");
+                e.which = 13;
+                $from_s.trigger(e);
+            }
+        });
+
+        $from_s.focus();
+
+        $from_s.keypress(function (event) {
+            if (event.which == 13) {
+                var planet_id = id;
+
+                if (planets_list[planet_id - 1].starports.indexOf($from_s.val()) > -1) {
+                    $("#error_message").css("display", "none");
+                    $from_s.css("border", "1px solid " + color);
+                    if ($to_p != null) {
+                        $to_p.prop("disabled", false);
+                        $to_p.focus();
+                    } else {
+                        $("#search_btn").focus();
+                    }
+                } else {
+                    $from_s.css("border", "1px solid red");
+                    if ($to_p != null) {
+                        $to_p.prop("disabled", true);
+                    }
+
+                    $("#error_message").css("display", "initial");
+                    $("#error_message #message").text("Please, enter an existing starport name");
+                }
+            }
+        });
+    } else {
+        $from_p.css("border", "1px solid red");
+        $from_s.val("");
+        $from_s.css("border", "1px solid #ced4da");
+        $from_s.prop("disabled", true);
+
+        $("#error_message").css("display", "initial");
+        $("#error_message #message").text("Please, enter an existing planet name");
+    }
 }
