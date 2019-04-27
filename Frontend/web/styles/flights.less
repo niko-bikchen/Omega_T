@@ -1,6 +1,6 @@
 @startColor : rgb(2, 136, 2);
 
-@destinationColor :  rgb(221, 145, 3);
+@destinationColor : rgb(221, 145, 3);
 
 #flights_container {
 
@@ -79,6 +79,31 @@
                     .place_end {
                         text-align: right;
                         color: @destinationColor;
+                    }
+                }
+
+                .flight_types {
+
+                    .standard,
+                    .lux {
+                        border-top: 1px solid @mainColor;
+                        margin-top: 15px;
+                        padding-top: 10px;
+
+                        .label_type {
+                            padding-top: 10px;
+
+                            text-align: left;
+                            color: @mainColor;
+                        }
+
+                        .col-md-6 {
+                            padding-top: 10px;
+
+                            button {
+                                background-color: @mainColor;
+                            }
+                        }
                     }
                 }
             }

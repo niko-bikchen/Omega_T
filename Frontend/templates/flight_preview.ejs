@@ -32,14 +32,43 @@
                 </span>
                 <span class="col-md-12">
                     <span class="flight_types">
-                        <%if ('lux' in flight && 'standard' in flight) { %>
-                        
-                        <% } else if (!'lux' in flight) { %>
-
-                        <% } else if (!'standard' in flight) { %>
-                        
-                        <% } else { %>
-                        
+                        <% if (('lux' in flight) && ('standard' in flight)) { %>
+                            <div class="row">
+                                <span class="col-md-12 lux">
+                                    <span class="row">
+                                        <span class="col-md-3 label_type">Lux</span>
+                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                    </span>
+                                </span>
+                                <span class="col-md-12 standard">
+                                    <span class="row">
+                                        <span class="col-md-3 label_type">Standard</span>
+                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                    </span>
+                                </span>
+                            </div>
+                        <% } else if (!('lux' in flight)) { %>
+                            <div class="row">
+                                <span class="col-md-12 standard">
+                                    <span class="row">
+                                        <span class="col-md-3 label_type">Standard</span>
+                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                    </span>
+                                </span>
+                            </div>
+                        <% } else if (!('standard' in flight)) { %>
+                            <div class="row">
+                                <span class="col-md-12 lux">
+                                    <span class="row">
+                                        <span class="col-md-3 label_type">Lux</span>
+                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                    </span>
+                                </span>
+                            </div>
                         <% } %>
                     <span>
                 </span>

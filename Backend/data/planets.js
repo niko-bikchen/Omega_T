@@ -10,7 +10,7 @@ var planets = [{
     },
     {
         id: 3,
-        name: "Brupiphus",
+        name: "Bruphiphus",
         starports: ["Teranova"],
     },
     {

@@ -1,5 +1,6 @@
 var flights = [{
         id: 1,
+
         start_planet: "Oliv",
         start_starport: "Delkon",
 
@@ -19,10 +20,18 @@ var flights = [{
         },
 
         time_start: "12:00",
-        time_end: "16:00"
+        time_end: "16:00",
+
+        ship: "Turbofalcon XXZ",
+
+        standard: {
+            vacant: 40,
+            occupied: []
+        },
     },
     {
         id: 2,
+
         start_planet: "Bruphiphus",
         start_starport: "Teranova",
 
@@ -42,7 +51,19 @@ var flights = [{
         },
 
         time_start: "12:00",
-        time_end: "16:00"
+        time_end: "16:00",
+
+        ship: "Turbofalcon XXX",
+
+        standard: {
+            vacant: 40,
+            occupied: []
+        },
+
+        lux: {
+            vacant: 20,
+            occupied: []
+        }
     }
 ];
 

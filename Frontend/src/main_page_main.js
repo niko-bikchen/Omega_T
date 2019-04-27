@@ -68,37 +68,51 @@ $(function () {
     });
 
     $('#search_btn').on('click', function () {
-        var start_planet = $input_from_p.val();
-        var start_starport = $input_from_s.val();
+        if (checkInput()) {
+            $("#error_message").css("display", "none");
 
-        var destination_planet = $input_to_p.val();
-        var destination_starport = $input_to_s.val();
+            var start_planet = $input_from_p.val();
+            var start_starport = $input_from_s.val();
 
-        var date = $("#date").val();
+            var destination_planet = $input_to_p.val();
+            var destination_starport = $input_to_s.val();
 
-        var available_flights = flights_list.flights.filter(function (flight) {
-            return flight.start_planet == start_planet && flight.start_starport == start_starport &&
-                flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
-                date == (flight.date_start.year + "-0" + flight.date_start.month + "-" + flight.date_start.day);
-        });
+            var date = $("#date").val();
 
-        $("#flights_container").css("background-color", "white");
-        $("#flights_container").css("border", "1px solid #000f94d7");
-        $(".flight_preview").remove();
+            var available_flights = flights_list.flights.filter(function (flight) {
+                
+                var year_start = flight.date_start.year;
+                var month_start =  String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
+                var day_start =  String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
 
-        if (available_flights.length > 0) {
-            $("#no_flights_label").css("display", "none");
+                console.log(year_start, month_start, day_start);
 
-            available_flights.forEach(function (flight) {
-                var html_code = Templates.flight_preview({
-                    flight
-                });
-                var $node = $(html_code);
-
-                $("#flights").append($node);
+                return flight.start_planet == start_planet && flight.start_starport == start_starport &&
+                    flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
+                    date == (year_start + "-" + month_start + "-" + day_start);
             });
+
+            $("#flights_container").css("background-color", "white");
+            $("#flights_container").css("border", "1px solid #000f94d7");
+            $(".flight_preview").remove();
+
+            if (available_flights.length > 0) {
+                $("#no_flights_label").css("display", "none");
+
+                available_flights.forEach(function (flight) {
+                    var html_code = Templates.flight_preview({
+                        flight
+                    });
+                    var $node = $(html_code);
+
+                    $("#flights").append($node);
+                });
+            } else {
+                $("#no_flights_label").css("display", "initial");
+            }
         } else {
-            $("#no_flights_label").css("display", "initial");
+            $("#error_message").css("display", "initial");
+            $("#error_message #message").text("In order to search for flights you need to fill all fields");
         }
     });
 
@@ -181,4 +195,13 @@ function hendleInput($from_p, $from_s, $to_p, color) {
         $("#error_message").css("display", "initial");
         $("#error_message #message").text("Please, enter an existing planet name");
     }
+}
+
+function checkInput() {
+    if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
+        $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
+        return true;
+    }
+
+    return false;
 }
