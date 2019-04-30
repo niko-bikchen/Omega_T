@@ -33,7 +33,9 @@ $(function () {
 
             $input_from_p.autocomplete({
                 source: planets,
-                select: function () {
+                select: function (event, ui) {
+                    $input_from_p.val(ui.item.value);
+
                     var e = jQuery.Event("keypress");
                     e.which = 13;
                     $input_from_p.trigger(e);
@@ -42,7 +44,9 @@ $(function () {
 
             $input_to_p.autocomplete({
                 source: planets,
-                select: function () {
+                select: function (event, ui) {
+                    $input_to_p.val(ui.item.value);
+
                     var e = jQuery.Event("keypress");
                     e.which = 13;
                     $input_to_p.trigger(e);
@@ -67,6 +71,14 @@ $(function () {
         }
     });
 
+    $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
+        var html_code = Templates.flight_booking({
+            flight: flights_list.flights[$(this).attr('flight_id') - 1]
+        });
+
+        console.log(html_code);
+    });
+
     $('#search_btn').on('click', function () {
         if (checkInput()) {
             $("#error_message").css("display", "none");
@@ -80,12 +92,10 @@ $(function () {
             var date = $("#date").val();
 
             var available_flights = flights_list.flights.filter(function (flight) {
-                
-                var year_start = flight.date_start.year;
-                var month_start =  String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
-                var day_start =  String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
 
-                console.log(year_start, month_start, day_start);
+                var year_start = flight.date_start.year;
+                var month_start = String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
+                var day_start = String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
 
                 return flight.start_planet == start_planet && flight.start_starport == start_starport &&
                     flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
@@ -104,8 +114,10 @@ $(function () {
                         flight
                     });
                     var $node = $(html_code);
+                    $node.attr('id', flight.id);
 
                     $("#flights").append($node);
+
                 });
             } else {
                 $("#no_flights_label").css("display", "initial");
@@ -153,7 +165,9 @@ function hendleInput($from_p, $from_s, $to_p, color) {
 
         $from_s.autocomplete({
             source: planets_list[id - 1].starports,
-            select: function () {
+            select: function (event, ui) {
+                $from_s.val(ui.item.value);
+
                 var e = jQuery.Event("keypress");
                 e.which = 13;
                 $from_s.trigger(e);
@@ -179,6 +193,7 @@ function hendleInput($from_p, $from_s, $to_p, color) {
                     $from_s.css("border", "1px solid red");
                     if ($to_p != null) {
                         $to_p.prop("disabled", true);
+                        $to_p.val("");
                     }
 
                     $("#error_message").css("display", "initial");

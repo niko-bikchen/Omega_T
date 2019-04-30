@@ -13,9 +13,9 @@ function configureEndpoints(app) {
     //Налаштування URL за якими буде відповідати сервер
     app.get('/api/get-planets-list/', api.getPlanets);
 
-    app.get('/api/get-flights-list', api.getFlights);
+    app.get('/api/get-flights-list/', api.getFlights);
 
-    app.get('/api/get-ships-list', api.getShips);
+    app.get('/api/get-ships-list/', api.getShips);
 
     app.post('/api/book-flight/', api.bookTicket);
 
@@ -28,9 +28,6 @@ function configureEndpoints(app) {
     app.get('/about', pages.about_page);
 
     app.get('/starmap', pages.starmap);
-
-    //Сторінка замовлення
-    app.get('/booking', pages.flight_booking_page);
 
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/web')));

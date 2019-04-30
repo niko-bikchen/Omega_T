@@ -31,9 +31,13 @@ exports.getPlanets = function(callback) {
 };
 
 exports.getFlights = function(callback) {
-    backendGet("/api/get-flights-list", callback);  
+    backendGet("/api/get-flights-list/", callback);  
 };
 
+exports.getFlightsBookingPage = function(flight_info, callback) {
+    backendPost("/pages/booking-page/", flight_info, callback);
+}
+
 exports.bookTicket = function(fligh_info, callback) {
-    backendPost("/api/book-flight/", fligh_info, callback);
+     backendPost("/api/book-flight/", fligh_info, callback);
 };
