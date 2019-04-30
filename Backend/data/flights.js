@@ -1,28 +1,69 @@
 var flights = [{
         id: 1,
+
         start_planet: "Oliv",
-        start_starport: "Sample",
+        start_starport: "Delkon",
 
         destination_planet: "Gulara",
-        destination_starport: "Demple",
+        destination_starport: "Galendros",
 
-        date: "12.12.12",
+        date_start: {
+            day: 26,
+            month: 4,
+            year: 2019
+        },
+
+        date_end: {
+            day: 26,
+            month: 4,
+            year: 2019
+        },
 
         time_start: "12:00",
-        time_end: "16:00"
+        time_end: "16:00",
+
+        ship: "Turbofalcon XXZ",
+
+        standard: {
+            vacant: 40,
+            occupied: []
+        },
     },
     {
         id: 2,
+
         start_planet: "Bruphiphus",
-        start_starport: "Sample",
+        start_starport: "Teranova",
 
         destination_planet: "Doria O476",
-        destination_starport: "Demple",
+        destination_starport: "Yarnis",
 
-        date: "12.12.12",
+        date_start: {
+            day: 26,
+            month: 4,
+            year: 2019
+        },
+
+        date_end: {
+            day: 26,
+            month: 4,
+            year: 2019
+        },
 
         time_start: "12:00",
-        time_end: "16:00"
+        time_end: "16:00",
+
+        ship: "Turbofalcon XXX",
+
+        standard: {
+            vacant: 40,
+            occupied: []
+        },
+
+        lux: {
+            vacant: 20,
+            occupied: []
+        }
     }
 ];
 

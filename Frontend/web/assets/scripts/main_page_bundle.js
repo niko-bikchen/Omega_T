@@ -42,24 +42,215 @@ exports.bookTicket = function(fligh_info, callback) {
 
 var ejs = require('ejs');
 
-exports.login_window = ejs.compile("<div id=\"login_background\"></div>\r\n<div id=\"login_window\">\r\n    <form>\r\n        <div class=\"form-group\">\r\n            <label for=\"email_input\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"email_input\" aria-describedby=\"emailHelp\" placeholder=\"Your email\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"password_input\">Password</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"password_input\" placeholder=\"Your password\">\r\n        </div>\r\n        <div class=\"form-check\">\r\n            <input type=\"checkbox\" class=\"form-check-input\" id=\"remember_me\">\r\n            <label class=\"form-check-label\" for=\"remember_me\">Remeber me</label>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn btn-primary btn-lg btn-block\">Submit</button>\r\n    </from>\r\n</div>");
-exports.about_window = ejs.compile("<div id=\"about_background\"></div>\r\n<div id=\"about_window\">\r\n    <p>\r\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n    Fusce quis malesuada eros. Integer viverra at erat eu blandit.\r\n    Mauris consequat volutpat facilisis. Mauris at cursus ligula.\r\n    Mauris tempus ex mauris, non pretium arcu auctor ullamcorper.\r\n    Donec tristique nec lectus consequat auctor. Morbi aliquet posuere tellus sed viverra. \r\n    Vivamus dapibus mi id tortor tristique bibendum. Phasellus est lacus, rhoncus a sem a,\r\n    gravida venenatis augue. Nulla sodales turpis quis arcu hendrerit fermentum. \r\n    Nullam sit amet libero eget dui lobortis viverra id non risus. \r\n    Sed malesuada purus sed ex interdum aliquam. Praesent faucibus ultrices lacinia.\r\n     Proin laoreet mi non convallis fermentum. Nunc porta pretium scelerisque.\r\n    </p>\r\n    <img src=\"assets/images/logo.png\">\r\n    <button class=\"btn btn-primary btn-lg btn-block\">Back</button>\r\n</div>");
-exports.flight_preview = ejs.compile("<div class=\"fligh_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"time_details\">\r\n                        <span class=\"col-md-4\" id=\"time_start\"><%= flight.time_start %></span>\r\n                        <span class=\"col-md-4\" id=\"duration\">1</span>\r\n                        <span class=\"col-md-4\" id=\"time_end\"><%= flight.time_end %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"date_details\">\r\n                        <span class=\"col-md-6\" id=\"date_start\"><%= flight.date %></span>\r\n                        <span class=\"col-md-6\" id=\"date_end\"><%= flight.date %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row\" id=\"places_details\">\r\n                        <span class=\"col-md-6\" id=\"place_start\"><%= flight.start_planet %>-<%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6\" id=\"place_end\"><%= flight.destination_planet %>-<%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span id=\"flight_types\">\r\n                        <%if ('lux' in flight && 'standard' in flight) { %>\r\n                        \r\n                        <% } else if (!'lux' in flight) { %>\r\n\r\n                        <% } else if (!'standard' in flight) { %>\r\n                        \r\n                        <% } else { %>\r\n                        \r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
 
+var $input_from_p = $('#from_p');
+var $input_from_s = $('#from_s');
+var $input_to_p = $('#to_p');
+var $input_to_s = $('#to_s');
+
+var flights_list = null;
+var planets_list = null;
+
 $(function () {
+
+    $input_from_s.prop("disabled", true);
+    $input_to_p.prop("disabled", true);
+    $input_to_s.prop("disabled", true);
+
+    API.getFlights(function (err, data) {
+        if (!err) {
+            flights_list = data;
+        } else {
+            alert("An error occured while getting flights data");
+        }
+    });
+
+    API.getPlanets(function (err, data) {
+        if (!err) {
+            let planets = [];
+
+            for (let i = 0; i < data.length; ++i) {
+                planets.push(data[i].name);
+            }
+
+            $input_from_p.autocomplete({
+                source: planets,
+                select: function () {
+                    var e = jQuery.Event("keypress");
+                    e.which = 13;
+                    $input_from_p.trigger(e);
+                }
+            });
+
+            $input_to_p.autocomplete({
+                source: planets,
+                select: function () {
+                    var e = jQuery.Event("keypress");
+                    e.which = 13;
+                    $input_to_p.trigger(e);
+                }
+            });
+
+            planets_list = data;
+        } else {
+            alert("An error occured while getting planets data");
+        }
+    });
+
+    $input_from_p.keypress(function (event) {
+        if (event.which == 13) {
+            hendleInput($input_from_p, $input_from_s, $input_to_p, "green");
+        }
+    });
+
+    $input_to_p.keypress(function (event) {
+        if (event.which == 13) {
+            hendleInput($input_to_p, $input_to_s, null, "rgb(221, 145, 3)");
+        }
+    });
+
     $('#search_btn').on('click', function () {
-        API.getFlights(function (err, data) {
-            for (var i = 0; i < 2; ++i) {
-                var html = Templates.flight_preview({flight: data.flights[i]});
-                var $node = $(html);
-                $('body').append($node);
+        if (checkInput()) {
+            $("#error_message").css("display", "none");
+
+            var start_planet = $input_from_p.val();
+            var start_starport = $input_from_s.val();
+
+            var destination_planet = $input_to_p.val();
+            var destination_starport = $input_to_s.val();
+
+            var date = $("#date").val();
+
+            var available_flights = flights_list.flights.filter(function (flight) {
+                
+                var year_start = flight.date_start.year;
+                var month_start =  String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
+                var day_start =  String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
+
+                console.log(year_start, month_start, day_start);
+
+                return flight.start_planet == start_planet && flight.start_starport == start_starport &&
+                    flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
+                    date == (year_start + "-" + month_start + "-" + day_start);
+            });
+
+            $("#flights_container").css("background-color", "white");
+            $("#flights_container").css("border", "1px solid #000f94d7");
+            $(".flight_preview").remove();
+
+            if (available_flights.length > 0) {
+                $("#no_flights_label").css("display", "none");
+
+                available_flights.forEach(function (flight) {
+                    var html_code = Templates.flight_preview({
+                        flight
+                    });
+                    var $node = $(html_code);
+
+                    $("#flights").append($node);
+                });
+            } else {
+                $("#no_flights_label").css("display", "initial");
+            }
+        } else {
+            $("#error_message").css("display", "initial");
+            $("#error_message #message").text("In order to search for flights you need to fill all fields");
+        }
+    });
+
+    setDateForDatepicker();
+});
+
+function setDateForDatepicker() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = String(today.getMonth() + 1).padStart(2, '0');
+    var day = String(today.getDate()).padStart(2, '0');
+    var date = year + "-" + month + "-" + day;
+
+    $('#date').attr('value', date);
+    $('#date').attr('min', date);
+}
+
+function planetExists(planet_name) {
+
+    var id = -1;
+
+    planets_list.forEach(function (planet) {
+        if (planet.name == planet_name) {
+            id = planet.id;
+        }
+    });
+
+    return id;
+}
+
+function hendleInput($from_p, $from_s, $to_p, color) {
+    var id = planetExists($from_p.val());
+
+    if (id > 0) {
+        $("#error_message").css("display", "none");
+        $from_p.css("border", "1px solid " + color);
+        $from_s.prop("disabled", false);
+
+        $from_s.autocomplete({
+            source: planets_list[id - 1].starports,
+            select: function () {
+                var e = jQuery.Event("keypress");
+                e.which = 13;
+                $from_s.trigger(e);
             }
         });
-    });
-});
+
+        $from_s.focus();
+
+        $from_s.keypress(function (event) {
+            if (event.which == 13) {
+                var planet_id = id;
+
+                if (planets_list[planet_id - 1].starports.indexOf($from_s.val()) > -1) {
+                    $("#error_message").css("display", "none");
+                    $from_s.css("border", "1px solid " + color);
+                    if ($to_p != null) {
+                        $to_p.prop("disabled", false);
+                        $to_p.focus();
+                    } else {
+                        $("#search_btn").focus();
+                    }
+                } else {
+                    $from_s.css("border", "1px solid red");
+                    if ($to_p != null) {
+                        $to_p.prop("disabled", true);
+                    }
+
+                    $("#error_message").css("display", "initial");
+                    $("#error_message #message").text("Please, enter an existing starport name");
+                }
+            }
+        });
+    } else {
+        $from_p.css("border", "1px solid red");
+        $from_s.val("");
+        $from_s.css("border", "1px solid #ced4da");
+        $from_s.prop("disabled", true);
+
+        $("#error_message").css("display", "initial");
+        $("#error_message #message").text("Please, enter an existing planet name");
+    }
+}
+
+function checkInput() {
+    if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
+        $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
+        return true;
+    }
+
+    return false;
+}
 },{"./API":1,"./Templates":2}],4:[function(require,module,exports){
 
 },{}],5:[function(require,module,exports){
@@ -1171,35 +1362,29 @@ exports.cache = {
 
 },{}],7:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "ejs@2.6.1",
-      "D:\\Omega_T"
-    ]
-  ],
-  "_development": true,
-  "_from": "ejs@2.6.1",
+  "_from": "ejs@^2.4.1",
   "_id": "ejs@2.6.1",
   "_inBundle": false,
   "_integrity": "sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "ejs@2.6.1",
+    "raw": "ejs@^2.4.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "2.6.1",
+    "rawSpec": "^2.4.1",
     "saveSpec": null,
-    "fetchSpec": "2.6.1"
+    "fetchSpec": "^2.4.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz",
-  "_spec": "2.6.1",
-  "_where": "D:\\Omega_T",
+  "_shasum": "498ec0d495655abc6f23cd61868d926464071aa0",
+  "_spec": "ejs@^2.4.1",
+  "_where": "D:\\GitProjects\\Omega_T",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1208,6 +1393,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1216,6 +1402,7 @@ module.exports={
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.1.1",
