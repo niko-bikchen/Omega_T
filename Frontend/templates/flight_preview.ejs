@@ -38,14 +38,14 @@
                                     <span class="row">
                                         <span class="col-md-3 label_type">Lux</span>
                                         <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block " flight_id=<%= flight.id %>>Buy</button></span>
                                     </span>
                                 </span>
                                 <span class="col-md-12 standard">
                                     <span class="row">
                                         <span class="col-md-3 label_type">Standard</span>
                                         <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn" flight_id=<%= flight.id %>>Buy</button></span>
                                     </span>
                                 </span>
                             </div>
@@ -55,7 +55,7 @@
                                     <span class="row">
                                         <span class="col-md-3 label_type">Standard</span>
                                         <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn" flight_id=<%= flight.id %>>Buy</button></span>
                                     </span>
                                 </span>
                             </div>
@@ -65,7 +65,7 @@
                                     <span class="row">
                                         <span class="col-md-3 label_type">Lux</span>
                                         <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block">Buy</button></span>
+                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn" flight_id=<%= flight.id %>>Buy</button></span>
                                     </span>
                                 </span>
                             </div>

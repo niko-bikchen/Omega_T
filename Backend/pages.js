@@ -1,17 +1,19 @@
 exports.main_page = function (req, res) {
-    res.render('main_page');
+    res.render('main_page', {
+        pageTitle: "Omega Trans"
+    });
 }
 
 exports.login_page = function (req, res) {
-    res.render('login_page');
+    res.render('login_page', {
+        pageTitle: "Login"
+    });
 }
 
 exports.about_page = function (req, res) {
-    res.render('about_page');
-}
-
-exports.flight_booking_page = function (req, res) {
-    res.render('flight_booking_page');
+    res.render('about_page', {
+        pageTitle: "About"
+    });
 }
 
 exports.starmap = function (req, res) {
