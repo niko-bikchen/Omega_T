@@ -71,16 +71,19 @@ $(function () {
         }
     });
 
-    $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
-        var html_code = Templates.flight_booking({
-            flight: flights_list.flights[$(this).attr('flight_id') - 1]
-        });
+    // $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
+    //     // var seat_type = $(this).attr('seat_type');
 
-        console.log(html_code);
-    });
+    //     // var html_code = Templates.flight_booking({
+    //     //     flight: flights_list.flights[$(this).attr('flight_id') - 1]
+    //     // });
+
+    //     // console.log(html_code);
+    //     // console.log(seat_type);
+    // });
 
     $('#search_btn').on('click', function () {
-        if (checkInput()) {
+        if (inputIsNotEmpty()) {
             $("#error_message").css("display", "none");
 
             var start_planet = $input_from_p.val();
@@ -114,10 +117,69 @@ $(function () {
                         flight
                     });
                     var $node = $(html_code);
-                    $node.attr('id', flight.id);
+
+                    if ($node.find('.buy_standard').length != 0 && $node.find('.buy_lux').length != 0) {
+                        $node.find('.buy_standard').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].standard
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                        $node.find('.buy_lux').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].lux
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    } else if ($node.find('.buy_lux').length == 0) {
+                        $node.find('.buy_standard').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+                            
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].standard
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    } else if ($node.find('.buy_standard').length == 0) {
+                        $node.find('.buy_lux').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].lux
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    }
 
                     $("#flights").append($node);
-
                 });
             } else {
                 $("#no_flights_label").css("display", "initial");
@@ -212,11 +274,75 @@ function hendleInput($from_p, $from_s, $to_p, color) {
     }
 }
 
-function checkInput() {
+function inputIsNotEmpty() {
     if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
         $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
         return true;
     }
 
     return false;
+}
+
+function addSeats($booking_panel) {
+    var $first_row = $booking_panel.find("#first_row").find(".row");
+    var $second_row = $booking_panel.find("#second_row").find(".row");
+    var $seat_template = $booking_panel.find("#seat_template");
+    var $copy = null;
+
+    for (let i = 0, k = 1; i < 10; ++i) {
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find(".seat_one").text(k++);
+        $copy.find(".seat_one").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $copy.find(".seat_two").text(k++);
+        $copy.find(".seat_two").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $first_row.append($copy);
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find(".seat_one").text(k++);
+        $copy.find(".seat_one").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $copy.find(".seat_two").text(k++);
+        $copy.find(".seat_two").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $second_row.append($copy);
+    }
+
+
+}
+
+function giveTemplateCopy($template, classToAdd) {
+    var $template_copy = $template.clone();
+
+    $template_copy.removeAttr('style');
+    $template_copy.removeAttr('id');
+    $template_copy.addClass(classToAdd);
+
+    return $template_copy;
 }

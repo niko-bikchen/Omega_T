@@ -1,3 +1,68 @@
-<div id="flight_booking" class="row">
-    
+<div id="flight_booking" class="col-md-12">
+    <div id="templates">
+        <span class="col-md-1" id="seat_template" style="display: none;">
+            <button class="btn btn-block seat seat_one"></button>
+            <button class="btn btn-block seat seat_two"></button>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="status">
+            <div class="row">
+                <div class="col-md-6" id="progress">
+                    <ul>
+                        <li id="seat_picking">Pick a place</li>
+                        <li class="arrow">&#x291E;</li>
+                        <li id="passanger_data">Passanger data</li>
+                        <li class="arrow">&#x291E;</li>
+                        <li id="pay">Pay for the ticket</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" id="current_passenger_info">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="booking_steps">
+            <div class="container-fluid" id="seats">
+                <div class="row">
+                    <span class="col-md-12" id="first_row">
+                        <span class="row">
+                            <span class="col-md-2 restroom">
+                                <p>WC</p>
+                            </span>
+                        </span>
+                    </span>
+                    <span class="col-md-12" id="second_row">
+                        <span class="row">
+                            <span class="col-md-2 restroom">
+                                <p>WC</p>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="container-fluid" id="personal_info" style="display:none;">
+                <div class="row">
+                    <div class="input-group mb-3 col-md-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">First and last name</span>
+                        </div>
+                        <input type="text" class="form-control">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-3 col-md-12">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <span class="col-md-6"><button class="btn btn-primary btn-block">&#x291D;Back</button></span>
+                            <span class="col-md-6"><button class="btn btn-primary btn-block">Next&#x291E;</button></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

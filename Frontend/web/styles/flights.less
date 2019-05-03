@@ -149,5 +149,105 @@
                 }
             }
         }
+
+        #flight_booking {
+            margin-bottom: 30px;
+            padding: 0;
+
+
+            border: 2px solid @mainColor;
+
+            #status {
+                #progress {
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    padding-left: 10%;
+                    border-right: 2px solid @mainColor;
+
+                    ul {
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        overflow: hidden;
+                    }
+    
+                    li {
+                        float: left;
+                        font-size: 1.2em;
+                        padding-right: 5px;
+                    }
+
+                    li#seat_picking {
+                        color: @mainColor;
+                    }
+
+                    li.arrow {
+                        color: @mainColor;
+                    }
+                }
+            }
+
+            #booking_steps {
+                #seats {
+                    #first_row {
+                        margin-bottom: 50px;
+
+                        border-top: 2px solid @mainColor;
+
+                        .restroom {
+                            border-bottom: 1px solid @mainColor;
+                        }
+                    }
+
+                    #second_row {
+                        border-top: 1px solid @mainColor;
+
+                        .seat {
+                            border-bottom: none;
+                        }
+
+                        .seat_two {
+                            border-top: 1px solid @mainColor;
+                        }
+                    }
+
+                    .seat_block {
+                        padding-left: 0;
+                        padding-right: 0;
+
+                        .seat {
+                            margin: 0;
+
+                            color: @mainColor;
+                            text-align: center;
+
+                            border-left: 1px solid @mainColor;
+                            ;
+                            border-bottom: 1px solid @mainColor;
+
+                            border-radius: 0;
+
+                            background-color: whitesmoke;
+                        }
+
+                        .seat:hover {
+                            color: white;
+                            background-color: @mainColor;
+                        }
+                    }
+
+                    .restroom {
+                        p {
+                            margin-top: 1rem;
+
+                            text-align: center;
+                            font-size: 1.6em;
+                        }
+                    }
+                }
+
+                #personal_info {}
+            }
+        }
     }
 }

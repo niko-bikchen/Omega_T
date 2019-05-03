@@ -46,8 +46,8 @@ exports.bookTicket = function(fligh_info, callback) {
 
 var ejs = require('ejs');
 
-exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block \" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
-exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"row\">\r\n    Hello <%= flight.start_planet %>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
+exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"col-md-12\">\r\n    <div id=\"templates\">\r\n        <span class=\"col-md-1\" id=\"seat_template\" style=\"display: none;\">\r\n            <button class=\"btn btn-block seat seat_one\"></button>\r\n            <button class=\"btn btn-block seat seat_two\"></button>\r\n        </span>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\" id=\"status\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6\" id=\"progress\">\r\n                    <ul>\r\n                        <li id=\"seat_picking\">Pick a place</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"passanger_data\">Passanger data</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"pay\">Pay for the ticket</li>\r\n                    </ul>\r\n                </div>\r\n                <div class=\"col-md-6\" id=\"current_passenger_info\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-12\" id=\"booking_steps\">\r\n            <div class=\"container-fluid\" id=\"seats\">\r\n                <div class=\"row\">\r\n                    <span class=\"col-md-12\" id=\"first_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                    <span class=\"col-md-12\" id=\"second_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                </div>\r\n            </div>\r\n            <div class=\"container-fluid\" id=\"personal_info\" style=\"display:none;\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-group mb-3 col-md-12\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"\">First and last name</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\">\r\n                        <input type=\"text\" class=\"form-control\">\r\n                    </div>\r\n                    <div class=\"input-group mb-3 col-md-12\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"inputGroup-sizing-default\">Email</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\">\r\n                    </div>\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"row\">\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">&#x291D;Back</button></span>\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\">Next&#x291E;</button></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
@@ -122,16 +122,19 @@ $(function () {
         }
     });
 
-    $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
-        var html_code = Templates.flight_booking({
-            flight: flights_list.flights[$(this).attr('flight_id') - 1]
-        });
+    // $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
+    //     // var seat_type = $(this).attr('seat_type');
 
-        console.log(html_code);
-    });
+    //     // var html_code = Templates.flight_booking({
+    //     //     flight: flights_list.flights[$(this).attr('flight_id') - 1]
+    //     // });
+
+    //     // console.log(html_code);
+    //     // console.log(seat_type);
+    // });
 
     $('#search_btn').on('click', function () {
-        if (checkInput()) {
+        if (inputIsNotEmpty()) {
             $("#error_message").css("display", "none");
 
             var start_planet = $input_from_p.val();
@@ -165,10 +168,69 @@ $(function () {
                         flight
                     });
                     var $node = $(html_code);
-                    $node.attr('id', flight.id);
+
+                    if ($node.find('.buy_standard').length != 0 && $node.find('.buy_lux').length != 0) {
+                        $node.find('.buy_standard').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].standard
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                        $node.find('.buy_lux').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].lux
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    } else if ($node.find('.buy_lux').length == 0) {
+                        $node.find('.buy_standard').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+                            
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].standard
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    } else if ($node.find('.buy_standard').length == 0) {
+                        $node.find('.buy_lux').on('click', function () {
+                            $(this).prop('disabled', true);
+                            $(this).text("Pressed");
+
+                            var html_code = Templates.flight_booking({
+                                seats: flights_list.flights[flight.id - 1].lux
+                            });
+
+                            var $booking_panel = $(html_code);
+
+                            addSeats($booking_panel);
+
+                            $node.after($booking_panel);
+                        });
+                    }
 
                     $("#flights").append($node);
-
                 });
             } else {
                 $("#no_flights_label").css("display", "initial");
@@ -263,13 +325,77 @@ function hendleInput($from_p, $from_s, $to_p, color) {
     }
 }
 
-function checkInput() {
+function inputIsNotEmpty() {
     if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
         $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
         return true;
     }
 
     return false;
+}
+
+function addSeats($booking_panel) {
+    var $first_row = $booking_panel.find("#first_row").find(".row");
+    var $second_row = $booking_panel.find("#second_row").find(".row");
+    var $seat_template = $booking_panel.find("#seat_template");
+    var $copy = null;
+
+    for (let i = 0, k = 1; i < 10; ++i) {
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find(".seat_one").text(k++);
+        $copy.find(".seat_one").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $copy.find(".seat_two").text(k++);
+        $copy.find(".seat_two").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $first_row.append($copy);
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find(".seat_one").text(k++);
+        $copy.find(".seat_one").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $copy.find(".seat_two").text(k++);
+        $copy.find(".seat_two").on('click', function(){
+            console.log($(this).text());
+            $("#seats").css('display', 'none');
+            $("#personal_info").css('display', 'initial');
+            $("#status #progress #seat_picking").css('color', 'initial');
+            $("#status #progress #passanger_data").css('color', '#000f94d7');
+        });
+
+        $second_row.append($copy);
+    }
+
+
+}
+
+function giveTemplateCopy($template, classToAdd) {
+    var $template_copy = $template.clone();
+
+    $template_copy.removeAttr('style');
+    $template_copy.removeAttr('id');
+    $template_copy.addClass(classToAdd);
+
+    return $template_copy;
 }
 },{"./API":1,"./Templates":2}],4:[function(require,module,exports){
 
