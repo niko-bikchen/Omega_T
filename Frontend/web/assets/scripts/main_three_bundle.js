@@ -53,18 +53,15 @@ var planetList = [];
 
 $(function(){
     API.getPlanetsList(function (err,data) {
-        console.log(planetList, 'inside');
         planetList = data.planetsList2;
-        console.log(planetList, 'inside');
         init();
     });
 
-    console.log(planetList, 'outside');
+
 
 });
 
 function init(){
-    console.log(planetList, 'init');
     var sun,earth,mars,saturn,venus,neptune,jupiter,mercury,uranus;
     let renderer = new THREE.WebGLRenderer();
     let scene = new THREE.Scene();
@@ -226,9 +223,6 @@ function init(){
     };
 
     function createOrbit(radius, distance,numberOfPlanet) {
-        console.log(planetList,'gay');
-
-
         var orbitContainer = new THREE.Object3D();
         var orbit = new THREE.Object3D();
         var geometry1 = new THREE.CircleGeometry(distance, 100);
@@ -267,13 +261,6 @@ function init(){
 // Scene, Camera, Renderer Configuration
     renderer.setSize(window.innerWidth, window.innerHeight);
     $("#jojo").append(renderer.domElement);
-
-
-
-
-
-
-
 
 
     var suntexture=THREE.ImageUtils.loadTexture("../assets/images/2k_sun.jpg");
