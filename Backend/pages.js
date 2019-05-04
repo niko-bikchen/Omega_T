@@ -1,6 +1,6 @@
 exports.main_page = function (req, res) {
     res.render('main_page', {
-        pageTitle: "Omega Trans"
+        pageTitle: "OPsi | Interstellar flights"
     });
 }
 
@@ -12,7 +12,7 @@ exports.login_page = function (req, res) {
 
 exports.about_page = function (req, res) {
     res.render('about_page', {
-        pageTitle: "About"
+        pageTitle: "About OPsi"
     });
 }
 

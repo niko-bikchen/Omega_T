@@ -25,7 +25,7 @@ var flights = [{
         ship: "Turbofalcon XXZ",
 
         standard: {
-            vacant: 40,
+            vacant: 20,
             occupied: []
         },
     },
@@ -56,7 +56,7 @@ var flights = [{
         ship: "Turbofalcon XXX",
 
         standard: {
-            vacant: 40,
+            vacant: 20,
             occupied: []
         },
 
