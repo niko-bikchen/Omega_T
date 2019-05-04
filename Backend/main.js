@@ -13,6 +13,8 @@ function configureEndpoints(app) {
     //Налаштування URL за якими буде відповідати сервер
     app.get('/api/get-planets-list/', api.getPlanets);
 
+    app.get('/api/get-three-planets-list/', api.getPlanetsList);
+
     app.get('/api/get-flights-list/', api.getFlights);
 
     app.get('/api/get-ships-list/', api.getShips);

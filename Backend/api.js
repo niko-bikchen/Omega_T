@@ -1,9 +1,14 @@
 var planets = require('./data/planets.js');
 var flights = require('./data/flights.js');
 var ships = require('./data/ships.js');
+var planetsList=require('./data/planetsList.js');
 
 exports.getPlanets = function(req, res) {
     res.send(planets);
+};
+
+exports.getPlanetsList = function(req, res) {
+    res.send(planetsList);
 };
 
 exports.getShips = function(req, res) {
