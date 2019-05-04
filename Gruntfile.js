@@ -34,6 +34,11 @@ module.exports = function (grunt) {
             about_page: {
                 src: 'Frontend/src/about_page_main.js',
                 dest: 'Frontend/web/assets/scripts/about_page_bundle.js'
+            },
+
+            three_js: {
+                src: 'Frontend/src/main_three.js',
+                dest: 'Frontend/web/assets/scripts/main_three_bundle.js'
             }
         }
     };
@@ -48,7 +53,7 @@ module.exports = function (grunt) {
             //На зміни в яких файлах реагувати
             files: ['Frontend/src/**/*.js', 'Frontend/**/*.ejs'],
             //Які завдання виконувати під час зміни в файлах
-            tasks: ['browserify:main_page', 'browserify:login_page', 'browserify:about_page']
+            tasks: ['browserify:main_page', 'browserify:login_page', 'browserify:about_page', 'browserify:three_js']
         }
     };
 
@@ -67,7 +72,8 @@ module.exports = function (grunt) {
         [
             'browserify:main_page',
             'browserify:login_page',
-            'browserify:about_page'
+            'browserify:about_page',
+            'browserify:three_js',
             //Інші завдання які необхідно виконати
         ]
     );
