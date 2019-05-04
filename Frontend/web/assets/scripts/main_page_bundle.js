@@ -47,7 +47,7 @@ exports.bookTicket = function(fligh_info, callback) {
 var ejs = require('ejs');
 
 exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block \" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn\" flight_id=<%= flight.id %>>Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
-exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"row\">\r\n    Hello <%= flight.start_planet %>\r\n</div>");
+exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"row\">\r\n    \r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
@@ -1382,29 +1382,35 @@ exports.cache = {
 
 },{}],7:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.6.1",
+      "D:\\Omega_T"
+    ]
+  ],
+  "_development": true,
+  "_from": "ejs@2.6.1",
   "_id": "ejs@2.6.1",
   "_inBundle": false,
   "_integrity": "sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.6.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.6.1",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.6.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz",
-  "_shasum": "498ec0d495655abc6f23cd61868d926464071aa0",
-  "_spec": "ejs@^2.4.1",
-  "_where": "D:\\GitProjects\\Omega_T",
+  "_spec": "2.6.1",
+  "_where": "D:\\Omega_T",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1413,7 +1419,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1422,7 +1427,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.1.1",
