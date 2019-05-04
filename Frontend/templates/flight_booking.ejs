@@ -18,6 +18,9 @@
                     </ul>
                 </div>
                 <div class="col-md-6" id="current_passenger_info">
+                    <span id="seat_type"></span>
+                    <span id="seat_number"></span>
+                    <span id="first_second_name"></span>
                 </div>
             </div>
         </div>
@@ -38,6 +41,7 @@
                             </span>
                         </span>
                     </span>
+                    <span class="col-md-12"><button class="btn btn-primary btn-block" id="next_btn" style="display: none;">Next&#x291E;</button></span>
                 </div>
             </div>
             <div class="container-fluid" id="personal_info" style="display:none;">
@@ -55,6 +59,9 @@
                         </div>
                         <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="email">
                     </div>
+                    <span class="col-md-12" id="error_msg" style="display: none;">
+                        Fill all fields to proceed
+                    </span>
                     <div class="col-md-12">
                         <div class="row">
                             <span class="col-md-6"><button class="btn btn-primary btn-block" id="back_btn">&#x291D;Back</button></span>
