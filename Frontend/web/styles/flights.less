@@ -170,7 +170,7 @@
                         padding: 0;
                         overflow: hidden;
                     }
-    
+
                     li {
                         float: left;
                         font-size: 1.2em;
@@ -184,6 +184,12 @@
                     li.arrow {
                         color: @mainColor;
                     }
+                }
+
+                #current_passenger_info {
+                    text-align: left;
+                    padding-top: 1%;
+                    font-size: 1.1em;
                 }
             }
 
@@ -246,7 +252,46 @@
                     }
                 }
 
-                #personal_info {}
+                #personal_info {
+
+                    #first_and_last_name_label,
+                    #email_label {
+                        color: white;
+                        background-color: #000f94d7;
+
+                    }
+
+                    #first_last_name_group {
+                        padding-left: 20%;
+                        padding-right: 20%;
+
+                        #first_name,
+                        #last_name {
+                            font-size: 1.2em;
+                            text-align: center;
+
+                        }
+                    }
+
+                    #email_group {
+                        padding-left: 35%;
+                        padding-right: 35%;
+                    }
+
+                    #back_btn,
+                    #next_btn {
+                        border: none;
+                        background-color: #000f94d7;
+                    }
+
+                    #back_btn {
+                        margin-left: 10px;
+                    }
+
+                    #next_btn {
+                        margin-left: -10px;
+                    }
+                }
             }
         }
     }

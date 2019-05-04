@@ -130,6 +130,7 @@ $(function () {
                             var $booking_panel = $(html_code);
 
                             addSeats($booking_panel);
+                            $booking_panel.find("#current_passenger_info").text("Seat type: Standard.");
 
                             $node.after($booking_panel);
                         });
@@ -144,6 +145,7 @@ $(function () {
                             var $booking_panel = $(html_code);
 
                             addSeats($booking_panel);
+                            $booking_panel.find("#current_passenger_info").text("Seat type: Lux.");
 
                             $node.after($booking_panel);
                         });
@@ -159,6 +161,7 @@ $(function () {
                             var $booking_panel = $(html_code);
 
                             addSeats($booking_panel);
+                            $booking_panel.find("#current_passenger_info").text("Seat type: Standard.");
 
                             $node.after($booking_panel);
                         });
@@ -174,6 +177,7 @@ $(function () {
                             var $booking_panel = $(html_code);
 
                             addSeats($booking_panel);
+                            $booking_panel.find("#current_passenger_info").text("Seat type: Lux.");
 
                             $node.after($booking_panel);
                         });
@@ -294,20 +298,22 @@ function addSeats($booking_panel) {
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find(".seat_one").text(k++);
         $copy.find(".seat_one").on('click', function(){
-            console.log($(this).text());
             $("#seats").css('display', 'none');
             $("#personal_info").css('display', 'initial');
             $("#status #progress #seat_picking").css('color', 'initial');
             $("#status #progress #passanger_data").css('color', '#000f94d7');
+            var data = $("#status #current_passenger_info").text();
+            $("#status #current_passenger_info").text(data + " Seat number: " + $(this).text());
         });
 
         $copy.find(".seat_two").text(k++);
         $copy.find(".seat_two").on('click', function(){
-            console.log($(this).text());
             $("#seats").css('display', 'none');
             $("#personal_info").css('display', 'initial');
             $("#status #progress #seat_picking").css('color', 'initial');
             $("#status #progress #passanger_data").css('color', '#000f94d7');
+            var data = $("#status #current_passenger_info").text();
+            $("#status #current_passenger_info").text(data + " Seat number: " + $(this).text());
         });
 
         $first_row.append($copy);
@@ -315,20 +321,22 @@ function addSeats($booking_panel) {
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find(".seat_one").text(k++);
         $copy.find(".seat_one").on('click', function(){
-            console.log($(this).text());
             $("#seats").css('display', 'none');
             $("#personal_info").css('display', 'initial');
             $("#status #progress #seat_picking").css('color', 'initial');
             $("#status #progress #passanger_data").css('color', '#000f94d7');
+            var data = $("#status #current_passenger_info").text();
+            $("#status #current_passenger_info").text(data + " Seat number: " + $(this).text());
         });
 
         $copy.find(".seat_two").text(k++);
         $copy.find(".seat_two").on('click', function(){
-            console.log($(this).text());
             $("#seats").css('display', 'none');
             $("#personal_info").css('display', 'initial');
             $("#status #progress #seat_picking").css('color', 'initial');
             $("#status #progress #passanger_data").css('color', '#000f94d7');
+            var data = $("#status #current_passenger_info").text();
+            $("#status #current_passenger_info").text(data + " Seat number: " + $(this).text());
         });
 
         $second_row.append($copy);
