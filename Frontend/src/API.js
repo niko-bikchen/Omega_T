@@ -30,6 +30,10 @@ exports.getPlanets = function(callback) {
     backendGet("/api/get-planets-list/", callback);
 };
 
+exports.getPlanetsList = function(callback) {
+    backendGet("/api/get-three-planets-list/", callback);
+};
+
 exports.getFlights = function(callback) {
     backendGet("/api/get-flights-list/", callback);  
 };

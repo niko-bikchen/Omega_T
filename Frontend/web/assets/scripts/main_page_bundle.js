@@ -31,6 +31,10 @@ exports.getPlanets = function(callback) {
     backendGet("/api/get-planets-list/", callback);
 };
 
+exports.getPlanetsList = function(callback) {
+    backendGet("/api/get-three-planets-list/", callback);
+};
+
 exports.getFlights = function(callback) {
     backendGet("/api/get-flights-list/", callback);  
 };
@@ -1611,29 +1615,35 @@ exports.cache = {
 
 },{}],7:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.6.1",
+      "D:\\Omega_T"
+    ]
+  ],
+  "_development": true,
+  "_from": "ejs@2.6.1",
   "_id": "ejs@2.6.1",
   "_inBundle": false,
   "_integrity": "sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.6.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.6.1",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.6.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz",
-  "_shasum": "498ec0d495655abc6f23cd61868d926464071aa0",
-  "_spec": "ejs@^2.4.1",
-  "_where": "D:\\GitProjects\\Omega_T",
+  "_spec": "2.6.1",
+  "_where": "D:\\Omega_T",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1642,7 +1652,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1651,7 +1660,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.1.1",
