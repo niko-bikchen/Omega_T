@@ -75,9 +75,12 @@ var flights = [{
     {
         id: 3,
 
+        start_planet_id:0,
         start_planet: "Oliv",
         start_starport: "Delkon",
 
+
+        destination_planet_id:1,
         destination_planet: "Gulara",
         destination_starport: "Galendros",
 
