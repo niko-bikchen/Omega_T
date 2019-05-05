@@ -1,9 +1,12 @@
 var flights = [{
         id: 1,
 
+        start_planet_id:0,
         start_planet: "Oliv",
         start_starport: "Delkon",
 
+
+        destination_planet_id:1,
         destination_planet: "Gulara",
         destination_starport: "Galendros",
 
@@ -33,9 +36,11 @@ var flights = [{
     {
         id: 2,
 
+        start_planet_id:2,
         start_planet: "Bruphiphus",
         start_starport: "Teranova",
 
+        destination_planet_id:3,
         destination_planet: "Doria O476",
         destination_starport: "Yarnis",
 
@@ -70,9 +75,12 @@ var flights = [{
     {
         id: 3,
 
+        start_planet_id:0,
         start_planet: "Oliv",
         start_starport: "Delkon",
 
+
+        destination_planet_id:1,
         destination_planet: "Gulara",
         destination_starport: "Galendros",
 

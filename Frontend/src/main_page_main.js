@@ -1,6 +1,6 @@
 var Templates = require('./Templates');
 var API = require('./API');
-
+var planetsList=null;
 $(function () {
     var $input_from_p = $('#from_p');
     var $input_from_s = $('#from_s');
@@ -20,6 +20,14 @@ $(function () {
     API.getFlights(function (err, data) {
         if (!err) {
             flights_list = data;
+        } else {
+            alert("An error occured while getting flights data");
+        }
+    });
+
+    API.getPlanetsList(function (err, data) {
+        if (!err) {
+            planetsList = data.planetsList2;
         } else {
             alert("An error occured while getting flights data");
         }
@@ -179,7 +187,7 @@ function handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, fl
         if (available_flights.length > 0) {
             //$("#no_flights_label").css("display", "none");
             hide($('#no_flights_label'));
-
+            var counter=0;
             available_flights.forEach(function (flight) {
                 var html_code = Templates.flight_preview({
                     flight
@@ -202,9 +210,20 @@ function handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, fl
                         handleBuyBtn("Lux", flight, flights_list, $node, $(this));
                     });
                 }
-
                 $('#flights').append($node);
+                var $start=$node.find("#planet");
+                var $end=$node.find("#planet2");
+                $start.removeAttr("id");
+                $end.removeAttr("id");
+                console.log(counter.toString());
+                $start.attr('id','planet1'+counter.toString());
+                $end.attr('id','planet2'+counter.toString());
+                makeScene(available_flights[counter].start_planet_id,'planet1'+counter.toString());
+                makeScene(available_flights[counter].destination_planet_id,'planet2'+counter.toString());
+                counter++;
+
             });
+
         } else {
             //$("#no_flights_label").css("display", "initial");
             show($('#no_flights_label'));
@@ -442,3 +461,80 @@ function enable($element) {
 //     // console.log(html_code);
 //     // console.log(seat_type);
 // });
+
+function makeScene(planetId,domElementId){
+    let scene = new THREE.Scene();
+    let Scontainer=document.getElementById(domElementId);
+    let renderer = new THREE.WebGLRenderer(Scontainer);
+    let aspect = (Scontainer.offsetWidth-20) / Scontainer.offsetHeight;
+    let camera = new THREE.PerspectiveCamera(20, aspect, 0.1, 200);
+    let cameraRotation = 0.1;
+    let cameraRotationSpeed = 0.001;
+    let cameraAutoRotation = true;
+    let orbitControls = new THREE.OrbitControls(camera);
+
+// Lights
+    let spotLight = new THREE.SpotLight(0xffffff, 1, 0, 10, 2);
+
+// Texture Loader
+    let textureLoader = new THREE.TextureLoader();
+
+    var mars = new THREE.Mesh(
+        new THREE.SphereBufferGeometry(planetsList[planetId].surface.size,32,32),
+        new THREE.MeshPhongMaterial({map:textureLoader.load(planetsList[planetId].surface.textures.map)})
+    );
+
+    let galaxyGeometry = new THREE.SphereGeometry(100, 32, 32);
+    let galaxyMaterial = new THREE.MeshBasicMaterial({
+        side: THREE.BackSide
+    });
+    let galaxy = new THREE.Mesh(galaxyGeometry, galaxyMaterial);
+
+// Load Galaxy Textures
+    textureLoader.crossOrigin = true;
+    textureLoader.load(
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/starfield.png',
+        function(texture) {
+            galaxyMaterial.map = texture;
+            scene.add(galaxy);
+        }
+    );
+
+// Scene, Camera, Renderer Configuration
+    renderer.setSize(Scontainer.offsetWidth -26, Scontainer.offsetHeight);
+    $("#"+domElementId).append(renderer.domElement);
+
+    camera.position.set(1,1,1);
+    orbitControls.enabled = !cameraAutoRotation;
+
+    scene.add(camera);
+    scene.add(spotLight);
+    scene.add(mars);
+
+// Light Configurations
+    spotLight.position.set(2, 0, 1);
+
+
+
+// On window resize, adjust camera aspect ratio and renderer size
+    window.addEventListener('resize', function() {
+        camera.aspect = Scontainer.offsetWidth / Scontainer.offsetHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(Scontainer.offsetWidth -20, Scontainer.offsetHeight);
+    });
+    // Main render function
+    let render = function() {
+        if (cameraAutoRotation) {
+            cameraRotation += cameraRotationSpeed;
+            camera.position.y = 0;
+            camera.position.x = 2 * Math.sin(cameraRotation);
+            camera.position.z = 2 * Math.cos(cameraRotation);
+            camera.lookAt(mars.position);
+
+        }
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+    };
+
+    render();
+}
