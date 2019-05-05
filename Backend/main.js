@@ -17,9 +17,13 @@ function configureEndpoints(app) {
 
     app.get('/api/get-flights-list/', api.getFlights);
 
+    app.get('/api/get-flights-list-from-db/', api.getFlightsFromDB);
+
     app.get('/api/get-ships-list/', api.getShips);
 
-    app.post('/api/book-flight/', api.bookTicket);
+    app.post('/api/register-user/', api.registerUser);
+
+    app.patch('/api/book-ticket/', api.bookTicket);
 
     //Сторінки
     //Головна сторінка
@@ -47,7 +51,9 @@ function startServer(port) {
     app.use(morgan('dev'));
 
     //Розбір POST запитів
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
     app.use(bodyParser.json());
 
     //Налаштовуємо сторінки
@@ -55,7 +61,7 @@ function startServer(port) {
 
     //Запуск додатка за вказаним портом
     app.listen(port, function () {
-        console.log('My Application Running on http://localhost:'+port+'/');
+        console.log('My Application Running on http://localhost:' + port + '/');
     });
 }
 

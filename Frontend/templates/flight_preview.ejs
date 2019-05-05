@@ -1,6 +1,6 @@
 <div class="flight_preview">
     <div class="row">
-        <div class="col-md-3 " id="planet"></div>
+        <div class="col-md-3 planet_container" id="planet"></div>
         <span class="col-md-6 flight_info">
             <span class="row">
                 <span class="col-md-12">
@@ -32,50 +32,28 @@
                 </span>
                 <span class="col-md-12">
                     <span class="flight_types">
-                        <% if (('lux' in flight) && ('standard' in flight)) { %>
-                            <div class="row">
-                                <span class="col-md-12 lux">
-                                    <span class="row">
-                                        <span class="col-md-3 label_type">Lux</span>
-                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_lux">Buy</button></span>
-                                    </span>
+                        <div class="row">
+                            <span class="col-md-12 lux">
+                                <span class="row">
+                                    <span class="col-md-2 label_type">Lux</span>
+                                    <span class="col-md-4 label_seats">Vacant seats: <%= flight.lux_seats_vacant %>Price: <%= flight.lux_seat_price %>UI</span>
+                                    <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_lux">Buy</button></span>
                                 </span>
-                                <span class="col-md-12 standard">
-                                    <span class="row">
-                                        <span class="col-md-3 label_type">Standard</span>
-                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_standard">Buy</button></span>
-                                    </span>
+                            </span>
+                            <span class="col-md-12 standard">
+                                <span class="row">
+                                    <span class="col-md-2 label_type">Standard</span>
+                                    <span class="col-md-4 label_seats">Vacant seats: <%= flight.standard_seats_vacant %>Price: <%= flight.standard_seat_price %>UI</span>
+                                    <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_standard">Buy</button></span>
                                 </span>
-                            </div>
-                        <% } else if (!('lux' in flight)) { %>
-                            <div class="row">
-                                <span class="col-md-12 standard">
-                                    <span class="row">
-                                        <span class="col-md-3 label_type">Standard</span>
-                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.standard.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_standard">Buy</button></span>
-                                    </span>
-                                </span>
-                            </div>
-                        <% } else if (!('standard' in flight)) { %>
-                            <div class="row">
-                                <span class="col-md-12 lux">
-                                    <span class="row">
-                                        <span class="col-md-3 label_type">Lux</span>
-                                        <span class="col-md-3 label_seats">Vacant seats: <%= flight.lux.vacant %></span>
-                                        <span class="col-md-6"><button class="btn btn-primary btn-block buy_btn buy_lux">Buy</button></span>
-                                    </span>
-                                </span>
-                            </div>
-                        <% } %>
+                            </span>
+                        </div>
                     <span>
                 </span>
             </span>
         </span>
             </span>
         </span>
-        <div class="col-md-3 " id="planet2"></div>
+        <div class="col-md-3 planet_container planet_container_right" id="planet2"></div>
     </div>
 </div>

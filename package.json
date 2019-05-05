@@ -27,5 +27,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "morgan": "^1.9.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mongoose": "^5.5.5"
+  }
 }
