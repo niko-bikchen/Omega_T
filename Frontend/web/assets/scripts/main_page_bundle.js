@@ -50,25 +50,27 @@ exports.bookTicket = function(fligh_info, callback) {
 
 var ejs = require('ejs');
 
-exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\">1 UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <span class=\"col-md-3 planet\"></span>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\"><%= flight.duration %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <% if (('lux' in flight) && ('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('lux' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 standard\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Standard</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.standard.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } else if (!('standard' in flight)) { %>\r\n                            <div class=\"row\">\r\n                                <span class=\"col-md-12 lux\">\r\n                                    <span class=\"row\">\r\n                                        <span class=\"col-md-3 label_type\">Lux</span>\r\n                                        <span class=\"col-md-3 label_seats\">Vacant seats: <%= flight.lux.vacant %></span>\r\n                                        <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                    </span>\r\n                                </span>\r\n                            </div>\r\n                        <% } %>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n        <span class=\"col-md-3 ship\"></span>\r\n    </div>\r\n</div>");
 exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"col-md-12\">\r\n    <div id=\"templates\">\r\n        <span class=\"col-md-1\" id=\"seat_template\" style=\"display: none;\">\r\n            <button class=\"btn btn-block seat seat_one\"></button>\r\n            <button class=\"btn btn-block seat seat_two\"></button>\r\n        </span>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\" id=\"status\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6\" id=\"progress\">\r\n                    <ul>\r\n                        <li id=\"seat_picking\">Pick a place</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"passanger_data\">Passanger data</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"pay\">Pay for the ticket</li>\r\n                    </ul>\r\n                </div>\r\n                <div class=\"col-md-6\" id=\"current_passenger_info\">\r\n                    <span id=\"seat_type\"></span>\r\n                    <span id=\"seat_number\"></span>\r\n                    <span id=\"first_second_name\"></span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-12\" id=\"booking_steps\">\r\n            <div class=\"container-fluid\" id=\"seats\">\r\n                <div class=\"row\">\r\n                    <span class=\"col-md-12\" id=\"first_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                    <span class=\"col-md-12\" id=\"second_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                    <span class=\"col-md-12\"><button class=\"btn btn-primary btn-block\" id=\"next_btn\" style=\"display: none;\">Next&#x291E;</button></span>\r\n                </div>\r\n            </div>\r\n            <div class=\"container-fluid\" id=\"personal_info\" style=\"display:none;\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-group mb-3 col-md-12\" id=\"first_last_name_group\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"first_and_last_name_label\">First and last name</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\" id=\"first_name\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"last_name\">\r\n                    </div>\r\n                    <div class=\"input-group mb-3 col-md-12\" id=\"email_group\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"email_label\">Email</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" id=\"email\">\r\n                    </div>\r\n                    <span class=\"col-md-12\" id=\"error_msg\" style=\"display: none;\">\r\n                        Fill all fields to proceed\r\n                    </span>\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"row\">\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\" id=\"back_btn\">&#x291D;Back</button></span>\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\" id=\"next_btn\">Next&#x291E;</button></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 },{"ejs":5}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
 
-var $input_from_p = $('#from_p');
-var $input_from_s = $('#from_s');
-var $input_to_p = $('#to_p');
-var $input_to_s = $('#to_s');
-
-var flights_list = null;
-var planets_list = null;
-
 $(function () {
+    var $input_from_p = $('#from_p');
+    var $input_from_s = $('#from_s');
+    var $input_to_p = $('#to_p');
+    var $input_to_s = $('#to_s');
 
-    $input_from_s.prop("disabled", true);
-    $input_to_p.prop("disabled", true);
-    $input_to_s.prop("disabled", true);
+    var flights_list = null;
+    var planets_list = null;
+
+    //$input_from_s.prop('disabled', true);
+    disable($input_from_s);
+    //$input_to_p.prop('disabled', true);
+    disable($input_to_p)
+    //$input_to_s.prop('disabled', true);
+    disable($input_to_s);
 
     API.getFlights(function (err, data) {
         if (!err) {
@@ -91,7 +93,7 @@ $(function () {
                 select: function (event, ui) {
                     $input_from_p.val(ui.item.value);
 
-                    var e = jQuery.Event("keypress");
+                    var e = jQuery.Event('keypress');
                     e.which = 13;
                     $input_from_p.trigger(e);
                 }
@@ -102,7 +104,7 @@ $(function () {
                 select: function (event, ui) {
                     $input_to_p.val(ui.item.value);
 
-                    var e = jQuery.Event("keypress");
+                    var e = jQuery.Event('keypress');
                     e.which = 13;
                     $input_to_p.trigger(e);
                 }
@@ -116,172 +118,294 @@ $(function () {
 
     $input_from_p.keypress(function (event) {
         if (event.which == 13) {
-            hendleInput($input_from_p, $input_from_s, $input_to_p, "green");
+            hendleInput($input_from_p, $input_from_s, $input_to_p, 'green', planets_list);
         }
     });
 
     $input_to_p.keypress(function (event) {
         if (event.which == 13) {
-            hendleInput($input_to_p, $input_to_s, null, "rgb(221, 145, 3)");
+            hendleInput($input_to_p, $input_to_s, null, 'rgb(221, 145, 3)', planets_list);
         }
     });
-
-    // $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
-    //     // var seat_type = $(this).attr('seat_type');
-
-    //     // var html_code = Templates.flight_booking({
-    //     //     flight: flights_list.flights[$(this).attr('flight_id') - 1]
-    //     // });
-
-    //     // console.log(html_code);
-    //     // console.log(seat_type);
-    // });
 
     $('#search_btn').on('click', function () {
-        if (inputIsNotEmpty()) {
-            $("#error_message").css("display", "none");
-
-            var start_planet = $input_from_p.val();
-            var start_starport = $input_from_s.val();
-
-            var destination_planet = $input_to_p.val();
-            var destination_starport = $input_to_s.val();
-
-            var date = $("#date").val();
-
-            var available_flights = flights_list.flights.filter(function (flight) {
-
-                var year_start = flight.date_start.year;
-                var month_start = String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
-                var day_start = String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
-
-                return flight.start_planet == start_planet && flight.start_starport == start_starport &&
-                    flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
-                    date == (year_start + "-" + month_start + "-" + day_start);
-            });
-
-            $("#flights_container").css("background-color", "white");
-            $("#flights_container").css("border", "1px solid #000f94d7");
-            $(".flight_preview").remove();
-            $("#flight_booking").remove();
-
-            if (available_flights.length > 0) {
-                $("#no_flights_label").css("display", "none");
-
-                available_flights.forEach(function (flight) {
-                    var html_code = Templates.flight_preview({
-                        flight
-                    });
-                    var $node = $(html_code);
-
-                    if ($node.find('.buy_standard').length != 0 && $node.find('.buy_lux').length != 0) {
-                        $node.find('.buy_standard').on('click', function () {
-                            var ticket = {};
-
-                            $("#flights_container").find(".buy_btn[disabled]").text("Buy");
-                            $("#flights_container").find(".buy_btn[disabled]").removeAttr('disabled');
-                            $(this).prop('disabled', true);
-                            $(this).text("Pressed");
-
-                            var html_code = Templates.flight_booking({
-                                seats: flights_list.flights[flight.id - 1].standard
-                            });
-                            ticket.flight = flights_list.flights[flight.id - 1];
-
-                            var $booking_panel = $(html_code);
-                            ticket.seat_type = "Standard";
-
-                            addSeats($booking_panel, ticket);
-                            $booking_panel.find("#current_passenger_info  #seat_type").text("Seat type: Standard.");
-
-                            $("#flights_container").find("#flight_booking").remove();
-                            $node.after($booking_panel);
-                        });
-                        $node.find('.buy_lux').on('click', function () {
-                            var ticket = {};
-
-                            $("#flights_container").find(".buy_btn[disabled]").text("Buy");
-                            $("#flights_container").find(".buy_btn[disabled]").removeAttr('disabled');
-                            $(this).prop('disabled', true);
-                            $(this).text("Pressed");
-
-                            var html_code = Templates.flight_booking({
-                                seats: flights_list.flights[flight.id - 1].lux
-                            });
-                            ticket.flight = flights_list.flights[flight.id - 1];
-
-                            var $booking_panel = $(html_code);
-                            ticket.seat_type = "Lux";
-
-                            addSeats($booking_panel, ticket);
-                            $booking_panel.find("#current_passenger_info  #seat_type").text("Seat type: Lux.");
-
-                            $("#flights_container").find("#flight_booking").remove();
-                            $node.after($booking_panel);
-                        });
-                    } else if ($node.find('.buy_lux').length == 0) {
-                        var ticket = {};
-
-                        $node.find('.buy_standard').on('click', function () {
-                            $("#flights_container").find(".buy_btn[disabled]").text("Buy");
-                            $("#flights_container").find(".buy_btn[disabled]").removeAttr('disabled');
-                            $(this).prop('disabled', true);
-                            $(this).text("Pressed");
-
-                            var html_code = Templates.flight_booking({
-                                seats: flights_list.flights[flight.id - 1].standard
-                            });
-                            ticket.flight = flights_list.flights[flight.id - 1];
-
-                            var $booking_panel = $(html_code);
-                            ticket.seat_type = "Standard";
-
-                            addSeats($booking_panel, ticket);
-                            $booking_panel.find("#current_passenger_info  #seat_type").text("Seat type: Standard.");
-
-                            $("#flights_container").find("#flight_booking").remove();
-                            $node.after($booking_panel);
-                        });
-                    } else if ($node.find('.buy_standard').length == 0) {
-                        var ticket = {};
-
-                        $node.find('.buy_lux').on('click', function () {
-                            $("#flights_container").find(".buy_btn[disabled]").text("Buy");
-                            $("#flights_container").find(".buy_btn[disabled]").removeAttr('disabled');
-                            $(this).prop('disabled', true);
-                            $(this).text("Pressed");
-
-                            var html_code = Templates.flight_booking({
-                                seats: flights_list.flights[flight.id - 1].lux
-                            });
-                            ticket.flight = flights_list.flights[flight.id - 1];
-
-                            var $booking_panel = $(html_code);
-                            ticket.seat_type = "Lux";
-
-                            addSeats($booking_panel, ticket);
-                            $booking_panel.find("#current_passenger_info #seat_type").text("Seat type: Lux.");
-
-                            $("#flights_container").find("#flight_booking").remove();
-                            $node.after($booking_panel);
-                        });
-                    }
-
-                    $("#flights").append($node);
-                });
-            } else {
-                $("#no_flights_label").css("display", "initial");
-            }
-        } else {
-            $("#error_message").css("display", "initial");
-            $("#error_message #message").text("In order to search for flights you need to fill all fields");
-        }
+        handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, flights_list);
     });
 
-    setDateForDatepicker();
+    setTodaysDateForDatepicker();
 });
 
-function setDateForDatepicker() {
+function hendleInput($from_planet, $from_starport, $to_planet, correct_input_color, planets_list) {
+    var id = planetExists($from_planet.val(), planets_list);
+    var $input_error_message = $('#error_message');
+
+    if (id > 0) {
+        //$input_error_message.css('display', 'none');
+        hide($input_error_message);
+        $from_planet.css('border', '1px solid ' + correct_input_color);
+        //$from_starport.prop('disabled', false);
+        enable($from_starport);
+
+        $from_starport.autocomplete({
+            source: planets_list[id - 1].starports,
+            select: function (event, ui) {
+                $from_starport.val(ui.item.value);
+
+                var e = jQuery.Event('keypress');
+                e.which = 13;
+                $from_starport.trigger(e);
+            }
+        });
+
+        $from_starport.focus();
+
+        $from_starport.keypress(function (event) {
+            if (event.which == 13) {
+                var planet_id = id;
+
+                if (planets_list[planet_id - 1].starports.indexOf($from_starport.val()) > -1) {
+                    $input_error_message.css('display', 'none');
+                    $from_starport.css('border', '1px solid ' + correct_input_color);
+                    if ($to_planet != null) {
+                        //$to_planet.prop('disabled', false);
+                        enable($to_planet);
+                        $to_planet.focus();
+                    } else {
+                        $("#search_btn").focus();
+                    }
+                } else {
+                    $from_starport.css('border', '1px solid red');
+                    if ($to_planet != null) {
+                        //$to_planet.prop('disabled', true);
+                        disable($to_planet);
+                        $to_planet.css('border', '1px solid rgb(206, 212, 218)');
+                        $to_planet.val("");
+                    }
+
+                    //$input_error_message.css('display', 'initial');
+                    show($input_error_message);
+                    $input_error_message.find('#message').text("Please, enter an existing starport name");
+                }
+            }
+        });
+    } else {
+        $from_planet.css('border', '1px solid red');
+        $from_starport.val("");
+        $from_starport.css('border', '1px solid #ced4da');
+        //$from_starport.prop('disabled', true);
+        disable($from_starport);
+
+        //$input_error_message.css('display', 'initial');
+        show($input_error_message)
+        $input_error_message.find('#message').text("Please, enter an existing planet name");
+    }
+}
+
+function handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, flights_list) {
+    var $input_error_message = $('#error_message');
+
+    if (inputIsNotEmpty($input_from_p, $input_from_s, $input_to_p, $input_to_s)) {
+        //$input_error_message.css("display", "none");
+        hide($input_error_message);
+
+        var start_planet = $input_from_p.val();
+        var start_starport = $input_from_s.val();
+
+        var destination_planet = $input_to_p.val();
+        var destination_starport = $input_to_s.val();
+
+        var date = $("#date").val();
+
+        var available_flights = flights_list.flights.filter(function (flight) {
+            var year_start = flight.date_start.year;
+            var month_start = String(flight.date_start.month).length == 2 ? flight.date_start.month : "0" + String(flight.date_start.month);
+            var day_start = String(flight.date_start.day).length == 2 ? flight.date_start.day : "0" + String(flight.date_start.day);
+
+            return flight.start_planet == start_planet && flight.start_starport == start_starport &&
+                flight.destination_planet == destination_planet && flight.destination_starport == destination_starport &&
+                date == (year_start + "-" + month_start + "-" + day_start);
+        });
+
+        $('#flights_container').css('background-color', 'white');
+        $('#flights_container').css('border', '1px solid #000f94d7');
+        $('.flight_preview').remove();
+        $('#flight_booking').remove();
+
+        if (available_flights.length > 0) {
+            //$("#no_flights_label").css("display", "none");
+            hide($('#no_flights_label'));
+
+            available_flights.forEach(function (flight) {
+                var html_code = Templates.flight_preview({
+                    flight
+                });
+                var $node = $(html_code);
+
+                if ($node.find('.buy_standard').length != 0 && $node.find('.buy_lux').length != 0) {
+                    $node.find('.buy_standard').on('click', function () {
+                        handleBuyBtn("Standard", flight, flights_list, $node, $(this));
+                    });
+                    $node.find('.buy_lux').on('click', function () {
+                        handleBuyBtn("Lux", flight, flights_list, $node, $(this));
+                    });
+                } else if ($node.find('.buy_lux').length == 0) {
+                    $node.find('.buy_standard').on('click', function () {
+                        handleBuyBtn("Standard", flight, flights_list, $node, $(this));
+                    });
+                } else if ($node.find('.buy_standard').length == 0) {
+                    $node.find('.buy_lux').on('click', function () {
+                        handleBuyBtn("Lux", flight, flights_list, $node, $(this));
+                    });
+                }
+
+                $('#flights').append($node);
+            });
+        } else {
+            //$("#no_flights_label").css("display", "initial");
+            show($('#no_flights_label'));
+        }
+    } else {
+        //$input_error_message.css("display", "initial");
+        show($input_error_message);
+        $input_error_message.find('#message').text("In order to search for flights you need to fill all fields");
+    }
+}
+
+function handleBuyBtn(seat_type, flight, flights_list, $node, $this_btn) {
+    var ticket = {};
+
+    $('#flights_container').find(".buy_btn[disabled]").text("Buy");
+    //$('#flights_container').find(".buy_btn[disabled]").removeAttr('disabled');
+    enable($('#flights_container').find(".buy_btn[disabled]"));
+    //$this_btn.prop('disabled', true);
+    disable($this_btn);
+    $this_btn.text("Pressed");
+
+    var html_code = Templates.flight_booking({
+        seats: flights_list.flights[flight.id - 1].standard
+    });
+    ticket.flight = flights_list.flights[flight.id - 1];
+
+    var $booking_panel = $(html_code);
+    ticket.seat_type = seat_type;
+
+    addSeats($booking_panel, ticket);
+    $booking_panel.find('#current_passenger_info  #seat_type').text("Seat type: " + seat_type + ".");
+
+    $('#flights_container').find('#flight_booking').remove();
+    $node.after($booking_panel);
+}
+
+function addSeats($booking_panel, ticket) {
+    var $first_row = $booking_panel.find('#first_row').find('.row');
+    var $second_row = $booking_panel.find('#second_row').find('.row');
+    var $seat_template = $booking_panel.find('#seat_template');
+    var $copy = null;
+
+    for (let i = 0, k = 1; i < 10; ++i) {
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find('.seat_one').text(k++);
+        $copy.find('.seat_two').text(k++);
+
+        $first_row.append($copy);
+
+        $copy = giveTemplateCopy($seat_template, 'seat_block');
+        $copy.find('.seat_one').text(k++);
+        $copy.find('.seat_two').text(k++);
+
+        $second_row.append($copy);
+    }
+
+    $booking_panel.find('.seat').on('click', function () {
+        //$("#seats").find("button[pressed='true']").prop('disabled', false);
+        enable($('#seats').find("button[pressed='true']"));
+        $('#seats').find("button[pressed='true']").css('background-color', 'whitesmoke');
+        $('#seats').find("button[pressed='true']").css('color', '#000f94d7');
+        $('#seats').find("button[pressed='true']").removeAttr('pressed');
+
+        //$(this).prop('disabled', true);
+        disable($(this));
+        $(this).css('background-color', '#000f94d7');
+        $(this).css('opacity', 'initial');
+        $(this).css('color', 'white');
+        $(this).attr('pressed', 'true');
+
+        $booking_panel.find('#seats #next_btn').removeAttr('style');
+
+        $booking_panel.find('#seats #next_btn').on('click', function () {
+            //$("#seats").css('display', 'none');
+            hide($('#seats'));
+            //$("#personal_info").css('display', 'initial');
+            show($('#personal_info'));
+            $('#status #progress #seat_picking').css('color', 'initial');
+            $('#status #progress #passanger_data').css('color', '#000f94d7');
+            $('#status #current_passenger_info #seat_number').text(" Seat number: " + $('#seats').find("button[pressed='true']").text());
+            ticket.seat_number = $('#seats').find("button[pressed='true']").text();
+        });
+
+        $('#personal_info #back_btn').on('click', function () {
+            //$('#seats').css('display', 'block');
+            show($('#seats'), 'block');
+            //$('#personal_info').css('display', 'none');
+            hide($('#personal_info'));
+            $('#status #current_passenger_info #seat_number').text("");
+            $('#status #progress #seat_picking').css('color', '#000f94d7');
+            $('#status #progress #passanger_data').css('color', 'initial');
+        });
+
+        $('#personal_info #first_name').on('keyup', function () {
+            handleNameInput($("#personal_info #first_name"), "Enter your first name. Letters only");
+        });
+
+        $('#personal_info #last_name').on('keyup', function () {
+            handleNameInput($('#personal_info #last_name'), "Enter your last name. Letters only");
+        });
+
+        $('#personal_info #email').on('keyup', function () {
+            if ($('#personal_info #email').val() == 0) {
+                $('#personal_info #email').addClass('error');
+                //$('#personal_info #error_msg').css('display', 'initial');
+                show($('#personal_info #error_msg'));
+                //$("#personal_info #next_btn").prop('disabled', true);
+                disable($('#personal_info #next_btn'));
+                $('#personal_info #error_msg').text("Enter your email");
+            } else {
+                //$("#personal_info #next_btn").prop('disabled', false);
+                enable($('#personal_info #next_btn'));
+                $('#personal_info #email').removeClass('error');
+                $('#personal_info #email').addClass('success');
+                //$('#personal_info #error_msg').css('display', 'none');
+                hide($('#personal_info #error_msg'));
+            }
+        });
+
+        $('#personal_info #next_btn').on('click', function () {
+            if (($('#personal_info #first_name').val().length > 0 && $('#personal_info #first_name').hasClass('success')) &&
+                ($('#personal_info #last_name').val().length && $('#personal_info #last_name').hasClass('success')) > 0 &&
+                ($('#personal_info #email').val().length > 0 && $('#personal_info #email').hasClass('success'))) {
+                ticket.passenger_first_name = $('#personal_info #first_name').val();
+                ticket.passenger_second_name = $('#personal_info #last_name').val();
+                ticket.passenger_email = $('#personal_info #email').val();
+
+                console.log(ticket);
+
+                //$('#personal_info #error_msg').css('display', 'none');
+                hide($('#personal_info #error_msg'));
+            } else {
+                $('#personal_info #first_name').addClass('error');
+                $('#personal_info #last_name').addClass('error');
+                $('#personal_info #email').addClass('error');
+
+                //$('#personal_info #error_msg').css('display', 'initial');
+                show($('#personal_info #error_msg'));
+                $('#personal_info #error_msg').text("Fill all fields to proceed");
+            }
+        });
+    });
+}
+
+function setTodaysDateForDatepicker() {
     var today = new Date();
     var year = today.getFullYear();
     var month = String(today.getMonth() + 1).padStart(2, '0');
@@ -292,8 +416,16 @@ function setDateForDatepicker() {
     $('#date').attr('min', date);
 }
 
-function planetExists(planet_name) {
+function inputIsNotEmpty($input_from_p, $input_from_s, $input_to_p, $input_to_s) {
+    if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
+        $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
+        return true;
+    }
 
+    return false;
+}
+
+function planetExists(planet_name, planets_list) {
     var id = -1;
 
     planets_list.forEach(function (planet) {
@@ -305,196 +437,6 @@ function planetExists(planet_name) {
     return id;
 }
 
-function hendleInput($from_p, $from_s, $to_p, color) {
-    var id = planetExists($from_p.val());
-
-    if (id > 0) {
-        $("#error_message").css("display", "none");
-        $from_p.css("border", "1px solid " + color);
-        $from_s.prop("disabled", false);
-
-        $from_s.autocomplete({
-            source: planets_list[id - 1].starports,
-            select: function (event, ui) {
-                $from_s.val(ui.item.value);
-
-                var e = jQuery.Event("keypress");
-                e.which = 13;
-                $from_s.trigger(e);
-            }
-        });
-
-        $from_s.focus();
-
-        $from_s.keypress(function (event) {
-            if (event.which == 13) {
-                var planet_id = id;
-
-                if (planets_list[planet_id - 1].starports.indexOf($from_s.val()) > -1) {
-                    $("#error_message").css("display", "none");
-                    $from_s.css("border", "1px solid " + color);
-                    if ($to_p != null) {
-                        $to_p.prop("disabled", false);
-                        $to_p.focus();
-                    } else {
-                        $("#search_btn").focus();
-                    }
-                } else {
-                    $from_s.css("border", "1px solid red");
-                    if ($to_p != null) {
-                        $to_p.prop("disabled", true);
-                        $to_p.css("border", "1px solid rgb(206, 212, 218)");
-                        $to_p.val("");
-                    }
-
-                    $("#error_message").css("display", "initial");
-                    $("#error_message #message").text("Please, enter an existing starport name");
-                }
-            }
-        });
-    } else {
-        $from_p.css("border", "1px solid red");
-        $from_s.val("");
-        $from_s.css("border", "1px solid #ced4da");
-        $from_s.prop("disabled", true);
-
-        $("#error_message").css("display", "initial");
-        $("#error_message #message").text("Please, enter an existing planet name");
-    }
-}
-
-function inputIsNotEmpty() {
-    if ($input_from_p.val().length > 0 && $input_from_s.val().length > 0 &&
-        $input_to_p.val().length > 0 && $input_to_s.val().length > 0) {
-        return true;
-    }
-
-    return false;
-}
-
-function addSeats($booking_panel, ticket) {
-    var $first_row = $booking_panel.find("#first_row").find(".row");
-    var $second_row = $booking_panel.find("#second_row").find(".row");
-    var $seat_template = $booking_panel.find("#seat_template");
-    var $copy = null;
-
-    for (let i = 0, k = 1; i < 10; ++i) {
-
-        $copy = giveTemplateCopy($seat_template, 'seat_block');
-        $copy.find(".seat_one").text(k++);
-        $copy.find(".seat_two").text(k++);
-
-        $first_row.append($copy);
-
-        $copy = giveTemplateCopy($seat_template, 'seat_block');
-        $copy.find(".seat_one").text(k++);
-        $copy.find(".seat_two").text(k++);
-
-        $second_row.append($copy);
-    }
-
-    $booking_panel.find(".seat").on('click', function () {
-        $("#seats").find("button[pressed='true']").prop('disabled', false);
-        $("#seats").find("button[pressed='true']").css('background-color', 'whitesmoke');
-        $("#seats").find("button[pressed='true']").css('color', '#000f94d7');
-        $("#seats").find("button[pressed='true']").removeAttr('pressed');
-
-        $(this).prop('disabled', true);
-        $(this).css('background-color', '#000f94d7');
-        $(this).css('opacity', 'initial');
-        $(this).css('color', 'white');
-        $(this).attr('pressed', 'true');
-
-        $booking_panel.find("#seats #next_btn").removeAttr('style');
-
-        $booking_panel.find("#seats #next_btn").on('click', function () {
-            $("#seats").css('display', 'none');
-            $("#personal_info").css('display', 'initial');
-            $("#status #progress #seat_picking").css('color', 'initial');
-            $("#status #progress #passanger_data").css('color', '#000f94d7');
-            $("#status #current_passenger_info #seat_number").text(" Seat number: " + $("#seats").find("button[pressed='true']").text());
-            ticket.seat_number = $("#seats").find("button[pressed='true']").text();
-        });
-
-        $("#personal_info #back_btn").on('click', function () {
-            $("#seats").css('display', 'block');
-            $("#personal_info").css('display', 'none');
-            $("#status #current_passenger_info #seat_number").text("");
-            $("#status #progress #seat_picking").css('color', '#000f94d7');
-            $("#status #progress #passanger_data").css('color', 'initial');
-        });
-
-        $("#personal_info #first_name").on('keyup', function () {
-            if (!(/^[А-яA-zІ-і]+$/.test($("#personal_info #first_name").val()))) {
-                $("#personal_info #first_name").addClass("error");
-                $("#personal_info #error_msg").css('display', 'initial');
-                $("#personal_info #next_btn").prop('disabled', true);
-                if ($("#personal_info #first_name").val() > 0) {
-                    $("#personal_info #error_msg").text("First name must contain only letters");
-                } else {
-                    $("#personal_info #error_msg").text("Enter your first name");
-                }
-            } else {
-                $("#personal_info #next_btn").prop('disabled', false);
-                $("#personal_info #first_name").removeClass("error");
-                $("#personal_info #first_name").addClass("success");
-                $("#personal_info #error_msg").css('display', 'none');
-            }
-        });
-
-        $("#personal_info #last_name").on('keyup', function () {
-            if (!(/^[А-яA-zІ-і]+$/.test($("#personal_info #last_name").val()))) {
-                $("#personal_info #last_name").addClass("error");
-                $("#personal_info #error_msg").css('display', 'initial');
-                $("#personal_info #next_btn").prop('disabled', true);
-                if ($("#personal_info #first_name").val() > 0) {
-                    $("#personal_info #error_msg").text("Last name must contain only letters");
-                } else {
-                    $("#personal_info #error_msg").text("Enter your last name");
-                }
-            } else {
-                $("#personal_info #next_btn").prop('disabled', false);
-                $("#personal_info #last_name").removeClass("error");
-                $("#personal_info #last_name").addClass("success");
-                $("#personal_info #error_msg").css('display', 'none');
-            }
-        });
-
-        $("#personal_info #email").on('keyup', function () {
-            if ($("#personal_info #email").val() == 0) {
-                $("#personal_info #email").addClass("error");
-                $("#personal_info #error_msg").css('display', 'initial');
-                $("#personal_info #next_btn").prop('disabled', true);
-                $("#personal_info #error_msg").text("Enter your email");
-            } else {
-                $("#personal_info #next_btn").prop('disabled', false);
-                $("#personal_info #email").removeClass("error");
-                $("#personal_info #email").addClass("success");
-                $("#personal_info #error_msg").css('display', 'none');
-            }
-        });
-
-        $("#personal_info #next_btn").on('click', function () {
-            if ($("#personal_info #first_name").val().length > 0 && $("#personal_info #last_name").val().length > 0 && $("#personal_info #email").val().length > 0) {
-                ticket.passenger_first_name = $("#personal_info #first_name").val();
-                ticket.passenger_second_name = $("#personal_info #last_name").val();
-                ticket.passenger_email = $("#personal_info #email").val();
-
-                console.log(ticket);
-
-                $("#personal_info #error_msg").css('display', 'none');
-            } else {
-                $("#personal_info #first_name").addClass("error");
-                $("#personal_info #last_name").addClass("error");
-                $("#personal_info #email").addClass("error");
-
-                $("#personal_info #error_msg").css('display', 'initial');
-                $("#personal_info #error_msg").text("Fill all fields to proceed");
-            }
-        });
-    });
-}
-
 function giveTemplateCopy($template, classToAdd) {
     var $template_copy = $template.clone();
 
@@ -504,6 +446,57 @@ function giveTemplateCopy($template, classToAdd) {
 
     return $template_copy;
 }
+
+function handleNameInput($name_input, err_msg) {
+    if (!(/^[А-яA-zІ-і]+$/.test($name_input.val()))) {
+        $name_input.addClass('error');
+        //$('#personal_info #error_msg').css('display', 'initial');
+        show($('#personal_info #error_msg'));
+        //$('#personal_info #next_btn').prop('disabled', true);
+        disable($('#personal_info #next_btn'));
+        if ($name_input.val() > 0) {
+            $('#personal_info #error_msg').text("First name must contain only letters");
+        } else {
+            $('#personal_info #error_msg').text(err_msg);
+        }
+    } else {
+        //$('#personal_info #next_btn').prop('disabled', false);
+        enable($('#personal_info #next_btn'));
+        $name_input.removeClass('error');
+        $name_input.addClass('success');
+        //$('#personal_info #error_msg').css('display', 'none');
+        hide($('#personal_info #error_msg'));
+    }
+}
+
+function hide($element, how = 'none') {
+    $element.css('display', how);
+}
+
+function show($element, how = 'initial') {
+    $element.css('display', how);
+}
+
+function disable($element) {
+    $element.prop('disabled', true);
+}
+
+function enable($element) {
+    $element.prop('disabled', false);
+}
+
+
+
+// $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
+//     // var seat_type = $(this).attr('seat_type');
+
+//     // var html_code = Templates.flight_booking({
+//     //     flight: flights_list.flights[$(this).attr('flight_id') - 1]
+//     // });
+
+//     // console.log(html_code);
+//     // console.log(seat_type);
+// });
 },{"./API":1,"./Templates":2}],4:[function(require,module,exports){
 
 },{}],5:[function(require,module,exports){
