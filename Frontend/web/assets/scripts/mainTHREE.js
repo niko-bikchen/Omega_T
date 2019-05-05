@@ -100,6 +100,8 @@ let planetProto = {
 let createPlanet = function(options) {
     // Create the planet's Surface
     let surfaceGeometry = planetProto.sphere(options.surface.size);
+    options.surface.material.specular=new THREE.Color(options.surface.color);
+    console.log(options);
     let surfaceMaterial = planetProto.material(options.surface.material);
     let surface = new THREE.Mesh(surfaceGeometry, surfaceMaterial);
 

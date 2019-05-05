@@ -1,5 +1,6 @@
 var planetList=[
     {
+        info:"text",
         surface: {
             color:'orange',
             size: 0.2,
@@ -17,6 +18,7 @@ var planetList=[
         atmosphere: null
     },
     {
+        info:"text",
         surface: {
             size: 0.21,
             color:'grey',
@@ -35,6 +37,7 @@ var planetList=[
 
     },
     {
+        info:"text",
         surface: {
             size: 0.23,
             color:'grey',
@@ -69,6 +72,7 @@ var planetList=[
     },
 
     {
+        info:"text",
         surface: {
             size: 0.21,
             color:'red',
@@ -87,6 +91,7 @@ var planetList=[
 
     },
     {
+        info:"text",
         surface: {
             size: 0.5,
             color:'grey',
@@ -106,6 +111,7 @@ var planetList=[
     },
 
     {
+        info:"text",
         surface: {
             size: 0.25,
             color:'grey',
@@ -125,6 +131,7 @@ var planetList=[
     },
 
     {
+        info:"text",
         surface: {
             size: 0.3,
             color:'blue',
@@ -144,6 +151,7 @@ var planetList=[
     },
 
     {
+        info:"text",
         surface: {
             size: 0.3,
             color:'blue',
@@ -163,6 +171,7 @@ var planetList=[
     },
 
     {
+        info:"text",
         surface: {
             size: 0.1,
             color:'grey',
@@ -181,6 +190,7 @@ var planetList=[
 
     },
     {
+        info:"text",
         surface: {
             size: 0.4,
             color:'blue',
@@ -198,6 +208,7 @@ var planetList=[
         atmosphere: null
     },
     {
+        info:"text",
         surface: {
             size: 0.4,
             color:"blue",
