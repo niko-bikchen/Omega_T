@@ -25,15 +25,6 @@ $(function () {
     //     }
     // });
 
-    API.getFlightsFromDB(function (err, data) {
-        if (!err) {
-            flights_list = {};
-            flights_list.flights = data;
-        } else {
-            alert("An error occured while getting flights data from DB");
-        }
-    });
-
     API.getPlanetsList(function (err, data) {
         if (!err) {
             planetsList = data.planetsList2;
@@ -91,7 +82,15 @@ $(function () {
     });
 
     $('#search_btn').on('click', function () {
-        handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, flights_list);
+        API.getFlightsFromDB(function (err, data) {
+            if (!err) {
+                flights_list = {};
+                flights_list.flights = data;
+                handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, flights_list);
+            } else {
+                alert("An error occured while getting flights data from DB");
+            }
+        });
     });
 
     setTodaysDateForDatepicker();
@@ -256,6 +255,7 @@ function handleBuyBtn(seat_type, flight, flights_list, $node, $this_btn) {
 
     var html_code = Templates.flight_booking();
     ticket.flight = flights_list.flights[flight._id - 1];
+    ticket.price = flights_list.flights[flight._id - 1][String(seat_type).toLowerCase() + "_seat_price"];
 
     var $booking_panel = $(html_code);
     ticket.seat_type = seat_type;
@@ -271,19 +271,46 @@ function addSeats($booking_panel, ticket) {
     var $first_row = $booking_panel.find('#first_row').find('.row');
     var $second_row = $booking_panel.find('#second_row').find('.row');
     var $seat_template = $booking_panel.find('#seat_template');
+    var occupied_seats = ticket.flight[String(ticket.seat_type).toLowerCase() + "_seats_occupied"];
     var $copy = null;
+    console.log(occupied_seats);
 
-    for (let i = 0, k = 1; i < 10; ++i) {
+    for (let i = 0, k = 0; i < 10; ++i) {
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
-        $copy.find('.seat_one').text(k++);
-        $copy.find('.seat_two').text(k++);
+        $copy.find('.seat_one').text(++k);
+        if(seatIsOccupied(occupied_seats, k)) {
+            disable($copy.find('.seat_one'));
+            $copy.find('.seat_one').css('color', 'white');
+            $copy.find('.seat_one').css('background-color', '#000f94d7');
+            $copy.find('.seat_one').css('opacity', '1');
+
+        }
+        $copy.find('.seat_two').text(++k);
+        if(seatIsOccupied(occupied_seats, k)) {
+            disable($copy.find('.seat_two'));
+            $copy.find('.seat_two').css('color', 'white');
+            $copy.find('.seat_two').css('background-color', '#000f94d7');
+            $copy.find('.seat_two').css('opacity', '1');
+        }
 
         $first_row.append($copy);
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
-        $copy.find('.seat_one').text(k++);
-        $copy.find('.seat_two').text(k++);
+        $copy.find('.seat_one').text(++k);
+        if(seatIsOccupied(occupied_seats, k)) {
+            disable($copy.find('.seat_one'));
+            $copy.find('.seat_one').css('color', 'white');
+            $copy.find('.seat_one').css('background-color', '#000f94d7');
+            $copy.find('.seat_one').css('opacity', '1');
+        }
+        $copy.find('.seat_two').text(++k);
+        if(seatIsOccupied(occupied_seats, k)) {
+            disable($copy.find('.seat_two'));
+            $copy.find('.seat_two').css('color', 'white');
+            $copy.find('.seat_two').css('background-color', '#000f94d7');
+            $copy.find('.seat_two').css('opacity', '1');
+        }
 
         $second_row.append($copy);
     }
@@ -355,14 +382,23 @@ function addSeats($booking_panel, ticket) {
             if (($('#personal_info #first_name').val().length > 0 && $('#personal_info #first_name').hasClass('success')) &&
                 ($('#personal_info #last_name').val().length && $('#personal_info #last_name').hasClass('success')) > 0 &&
                 ($('#personal_info #email').val().length > 0 && $('#personal_info #email').hasClass('success'))) {
-                ticket.passenger_first_name = $('#personal_info #first_name').val();
-                ticket.passenger_second_name = $('#personal_info #last_name').val();
-                ticket.passenger_email = $('#personal_info #email').val();
-
-                console.log(ticket);
-
                 //$('#personal_info #error_msg').css('display', 'none');
                 hide($('#personal_info #error_msg'));
+                ticket.passenger_first_name = $('#personal_info #first_name').val();
+                ticket.passenger_last_name = $('#personal_info #last_name').val();
+                ticket.passenger_email = $('#personal_info #email').val();
+
+                hide($('#personal_info'));
+                show($('#payment'));
+                $('#status #progress #passanger_data').css('color', 'black');
+                $('#status #progress #pay').css('color', '#000f94d7');
+                hide($('#status #current_passenger_info'));
+                $('#payment #ticket_summary').text("Seat type: " + ticket.seat_type + ". Seat number: " + ticket.seat_number + ". Price: " + ticket.price + ". " + ticket.passenger_first_name + " " + ticket.passenger_last_name);
+
+                $('#payment #pay_btn').on('click', function () {
+                    API.bookTicket(ticket);
+                });
+
             } else {
                 $('#personal_info #first_name').addClass('error');
                 $('#personal_info #last_name').addClass('error');
@@ -456,7 +492,15 @@ function enable($element) {
     $element.prop('disabled', false);
 }
 
+function seatIsOccupied(occupied_seats, seat_number) {
+    for (let i = 0; i < occupied_seats.length; ++i) {
+        if (occupied_seats[i].seat_number == seat_number) {
+            return true;
+        }
+    }
 
+    return false;
+}
 
 // $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
 //     // var seat_type = $(this).attr('seat_type');

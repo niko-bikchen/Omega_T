@@ -315,7 +315,7 @@
                     #back_btn,
                     #next_btn {
                         border: none;
-                        background-color: #000f94d7;
+                        background-color: @mainColor;
                     }
 
                     #back_btn {
@@ -341,6 +341,26 @@
                         text-align: center;
                         color: red;
                         font-size: 1em;
+                    }
+                }
+
+                #payment {
+                    #ticket_summary {
+                        text-align: center;
+                        font-size: 1.2em;
+                    }
+
+
+                    #pay_btn_container {
+                        padding-left: 30px;
+                        padding-right: 30px;
+
+                        #pay_btn {
+                            margin-top: 10px;
+                            
+                            border: none;
+                            background-color: @mainColor;
+                        }
                     }
                 }
             }
