@@ -60,13 +60,56 @@ $(function(){
 
 
 });
+$(function() {
+    TweenMax.to($('#welcome'), 1, {
+        css: {
+            opacity: 1
+        },
+        ease: Quad.easeInOut,
+    });
+    TweenMax.to($('#social'), 0.5, {
+        css: {
+            bottom:'20px'
+        },delay:0.5,
+        ease: Quad.easeInOut,
+    });
+    TweenMax.to($('#border'), 0.5, {
+        css: {
+            height: '200px',
+        },
+        delay: 0.5,
+        ease: Quad.easeInOut,
+    });
+
+});
+
 
 function init(){
+    function hideWelcome() {
+        TweenMax.to($('#welcome'), 0.5, {
+            css: {
+                opacity: 0
+            },
+            ease: Quad.easeInOut
+        });
+        TweenMax.to($('#welcome'), 0.5, {
+            css: {
+                display: 'none'
+            },
+            delay: 1,
+            ease: Quad.easeInOut
+        });
+    }
+
+
+
+    var info;
     var sun,earth,mars,saturn,venus,neptune,jupiter,mercury,uranus;
     let renderer = new THREE.WebGLRenderer();
     let scene = new THREE.Scene();
     let aspect = window.innerWidth / window.innerHeight;
     let camera = new THREE.PerspectiveCamera(280, aspect, 0.1, 1500);
+    var objects = [];
 
     camera.position.y=-3;
     camera.position.z=7;
@@ -255,6 +298,8 @@ function init(){
         function(texture) {
             galaxyMaterial.map = texture;
             scene.add(galaxy);
+            galaxy.Pname="space";
+            objects.push(galaxy);
         }
     );
 
@@ -272,6 +317,8 @@ function init(){
     var pointLight = new THREE.PointLight(0xffffff, 1.0, 3000.0);
     sun.add(pointLight);
     scene.add(sun);
+    sun.Pname="sun";
+    objects.push(sun);
 
     mercury=createOrbit(0.03,2,0);
     venus=createOrbit(0.15,3,1);
@@ -283,22 +330,95 @@ function init(){
     neptune=createOrbit(0.11,8,7);
 
     mercury[0].rotation.y+=12;
+    mercury[1].children[0].Pname="Mercury";
+    objects.push(mercury[1].children[0]);
     venus[0].rotation.y+=34;
+    venus[1].children[0].Pname="Venus";
+    objects.push(venus[1].children[0]);
     earth[0].rotation.y+=1;
+    earth[1].children[0].Pname="Earth";
+    objects.push(earth[1].children[0]);
     mars[0].rotation.y+=0;
+    mars[1].children[0].Pname="Mars";
+    objects.push(mars[1].children[0]);
     jupiter[0].rotation.y+=99;
+    jupiter[1].children[0].Pname="Jupiter";
+    objects.push(jupiter[1].children[0]);
     saturn[0].rotation.y+=144;
+    saturn[1].children[0].Pname="Saturn";
+    objects.push(saturn[1].children[0]);
     uranus[0].rotation.y+=1232;
+    uranus[1].children[0].Pname="Uranus";
+    objects.push(uranus[1].children[0]);
     neptune[0].rotation.y+=587;
+    neptune[1].children[0].Pname="Neptune";
+    objects.push(neptune[1].children[0]);
 
     scene.add(camera);
     camera.lookAt(scene.position);
+    info = document.getElementById('contentTitle');
+    var subtitle = document.getElementById('subtitle');
+    var description = document.getElementById('description')
+
+    //---------------------------------------------------------------------------------------
+    function setFromCamera(raycaster, coords, origin) {
+        raycaster.ray.origin.copy(camera.position);
+        raycaster.ray.direction.set(coords.x, coords.y, 0.5).unproject(camera).sub(camera.position).normalize();
+    }
+
+    function onMouseDown(event) {
+        var raycaster = new THREE.Raycaster();
+        mouse = new THREE.Vector2();
+        mouse.x = (event.clientX / renderer.domElement.width) * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.height) * 2 + 1;
+        raycaster.setFromCamera(mouse,camera);
+        var intersects = raycaster.intersectObjects(objects);
+        currentcolor = intersects[0].object.Pname;
+        console.log(currentcolor);
+        if (intersects.length > 0 && currentcolor!="space" && currentcolor!="sun") {
+
+            var planetNum=0;
+            for(planet in planetList){
+                if(planetList[planet].name==currentcolor)
+                    break;
+                planetNum++;
+            }
+                hideWelcome();
+                TweenMax.from($('#content'), 0.5, {
+                    css: {
+                        left: '-500px'
+                    },
+                    delay:0.5,
+                    ease: Quad.easeInOut
+                });
+
+                TweenMax.from($('#border'), 0.5, {
+                    css: {
+                        height: '0px'
+                    },
+                    delay: 1,
+                    ease: Quad.easeInOut,
+                });
+                info.innerHTML = " <span>"+planetList[planetNum].name+"|</span> "+planetList[planetNum].description+",";
+
+                description.innerHTML = "Available spaceports:<span> " +planetList[planetNum].info+"</span><br/><br/><div>"+planetList[planetNum].longRead+"<div>";
+
+
+
+
+        }
+        // console.log('Down');
+    }
+    document.addEventListener('mousedown', onMouseDown, false);
+//-------------------------------------------------------------------------------------
 
 // Main render function
+    var controls = new THREE.TrackballControls( camera );
+    var clock = new THREE.Clock();
     let render = function() {
 
-
-
+        var delta = clock.getDelta();
+        controls.update(delta);
         sun.rotation.y+=0.002
         mercury[0].rotation.y+=0.0047;
         mercury[1].rotation.y+=0.003;
@@ -337,141 +457,7 @@ function init(){
     TweenLite.ticker.addEventListener("tick", controls.update );
 
 
-////////////////////////////////////////
 
-    var timeline = new TimelineLite({
-        onStart: function(){
-            TweenLite.ticker.removeEventListener("tick", controls.update );
-            controls.enabled = false;
-        },
-        onComplete: function(){
-            TweenLite.ticker.addEventListener("tick", controls.update );
-            controls.position0.copy(camera.position);
-            controls.reset();
-            controls.enabled = true;
-        }
-    });
-    easing = 'Expo.easeInOut';
-
-
-////////////////////////////////////////
-
-
-    camera.reset = function(){
-
-        var pos = { x: 0, y: 0 };
-        var distance = 60;
-        var speed = 1;
-
-        if ( camera.parent !== scene ) {
-            var pos = camera.position.clone();
-            camera.parent.localToWorld(camera.position);
-            scene.add(camera);
-        }
-
-        timeline.clear();
-        timeline.to( camera.position, speed, {
-            x: pos.x,
-            y: pos.y,
-            z: distance,
-            ease: easing
-        }, 0);
-        timeline.to( camera.rotation, speed, { x: 0, y: 0, z: 0, ease: easing}, 0);
-
-    };
-
-
-////////////////////////////////////////
-
-    camera.getDistance = function(object) {
-
-        var helper = new THREE.BoundingBoxHelper(object, 0xff0000);
-        helper.update();
-
-        var width = helper.scale.x,
-            height = helper.scale.y;
-
-        // Set camera distance
-        var vFOV = camera.fov * Math.PI / 180,
-            ratio = 2 * Math.tan( vFOV / 2 ),
-            screen = ratio * camera.aspect, //( renderer.domElement.width / renderer.domElement.height ),
-            size = Math.max(height,width),
-            distance = (size / screen) + (helper.box.max.z / screen);
-
-        return distance;
-    };
-
-
-////////////////////////////////////////
-
-
-    camera.zoom = function(object){
-
-        var pos = camera.position.clone();
-        object.worldToLocal(camera.position);
-        object.add(camera);
-
-        var speed = 1;
-        timeline.clear();
-
-        timeline.to( camera.position, speed, {
-            x: pos.x,
-            y: pos.y,
-            z: camera.getDistance(object),
-            ease: easing
-        },0);
-
-    };
-
-
-////////////////////////////////////////
-
-
-    var startX, startY,
-        $target = $(renderer.domElement),
-        selected;
-
-    /*function mouseUp(e) {
-        e = e.originalEvent || e;
-        e.preventDefault();
-
-        var x = ( e.touches ? e.touches[0].clientX : e.clientX ),
-            y = ( e.touches ? e.touches[0].clientY : e.clientY ),
-            diff = Math.max(Math.abs(startX - x), Math.abs(startY - y));
-
-        if ( diff > 40 ) { return; }
-
-        var mouse = {
-            x: ( x / window.innerWidth ) * 2 - 1,
-            y: - ( y / window.innerHeight ) * 2 + 1
-        };
-
-        var vector = new THREE.Vector3( mouse.x, mouse.y ).unproject( camera );
-        var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-        var intersects = raycaster.intersectObject( scene, true );
-
-        if ( intersects.length > 0 && intersects[ 0 ].object !== selected ) {
-            selected = intersects[ 0 ].object;
-            camera.zoom(selected);
-        } else {
-            selected = null;
-            camera.reset();
-        }
-    }*/
-
-    function mouseDown( e ) {
-        e = e.originalEvent || e;
-        startX = ( e.touches ? e.touches[0].clientX : e.clientX );
-        startY = ( e.touches ? e.touches[0].clientY : e.clientY );
-
-        /* $target.one('mouseup touchend', mouseUp );
-
-         setTimeout(function(){ $target.off('mouseup.part touchend.part'); },300);*/
-    }
-
-
-    $target.on('mousedown touchend', mouseDown );
-////
 
     render();
 }

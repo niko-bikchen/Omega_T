@@ -1,6 +1,9 @@
 var planetList=[
     {
-        info:"text",
+        name:"Mercury",
+        description:"Eternal",
+        info:" Alamar",
+        longRead:"The home of Rally and safari",
         surface: {
             color:'orange',
             size: 0.2,
@@ -18,7 +21,10 @@ var planetList=[
         atmosphere: null
     },
     {
-        info:"text",
+        name:"Venus",
+        description:"Love full",
+        info:" Brontes , Braxis",
+        longRead:"The planet has lots of recreation centers and resort",
         surface: {
             size: 0.21,
             color:'grey',
@@ -37,7 +43,10 @@ var planetList=[
 
     },
     {
-        info:"text",
+        name:"Earth",
+        description:"Home planet",
+        info:" Aiur , Ravara , Torus",
+        longRead:"cradle of humanity and the most expensive planet to live",
         surface: {
             size: 0.23,
             color:'grey',
@@ -72,7 +81,10 @@ var planetList=[
     },
 
     {
-        info:"text",
+        name:"Mars",
+        description:"Blood full",
+        info:"Mar'Sara , Zerus",
+        longRead:"Got the second name due to two wars between colonists.",
         surface: {
             size: 0.21,
             color:'red',
@@ -91,7 +103,10 @@ var planetList=[
 
     },
     {
-        info:"text",
+        name:"Jupiter",
+        description:"The biggest",
+        info:"RedStone",
+        longRead:"Majority of colonists are workers of local gas-extracting enterprise",
         surface: {
             size: 0.5,
             color:'grey',
@@ -111,7 +126,10 @@ var planetList=[
     },
 
     {
-        info:"text",
+        name:"Saturn",
+        description:"FullMetal",
+        info:"Korhal",
+        longRead:"Most colonists are workers of local metal-extracting enterprise ",
         surface: {
             size: 0.25,
             color:'grey',
@@ -131,7 +149,10 @@ var planetList=[
     },
 
     {
-        info:"text",
+        name:"Uranus",
+        description:"Classic",
+        info:"Char",
+        longRead:"Most of the time colonists contemplate the winter blizzards",
         surface: {
             size: 0.3,
             color:'blue',
@@ -151,7 +172,10 @@ var planetList=[
     },
 
     {
-        info:"text",
+        name:"Neptune",
+        description:"Ice Gigant",
+        info:"Tarsonis",
+        longRead:"Home of gasiceboardists and winter olympic games",
         surface: {
             size: 0.3,
             color:'blue',
@@ -171,7 +195,7 @@ var planetList=[
     },
 
     {
-        info:"text",
+        info:"Jotun",
         surface: {
             size: 0.1,
             color:'grey',
@@ -190,7 +214,7 @@ var planetList=[
 
     },
     {
-        info:"text",
+        info:"IgnisFati",
         surface: {
             size: 0.4,
             color:'blue',
@@ -208,7 +232,7 @@ var planetList=[
         atmosphere: null
     },
     {
-        info:"text",
+        info:"Gloria",
         surface: {
             size: 0.4,
             color:"blue",
