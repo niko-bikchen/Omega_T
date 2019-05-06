@@ -591,84 +591,7 @@ function seatIsOccupied(occupied_seats, seat_number) {
 //     // console.log(seat_type);
 // });
 
-function makeScene(planetId, domElementId) {
-    let scene = new THREE.Scene();
-    let Scontainer = document.getElementById(domElementId);
-    let renderer = new THREE.WebGLRenderer(Scontainer);
-    let aspect = (Scontainer.offsetWidth - 20) / Scontainer.offsetHeight;
-    let camera = new THREE.PerspectiveCamera(20, aspect, 0.1, 200);
-    let cameraRotation = 0.1;
-    let cameraRotationSpeed = 0.001;
-    let cameraAutoRotation = true;
-    let orbitControls = new THREE.OrbitControls(camera);
 
-    // Lights
-    let spotLight = new THREE.SpotLight(0xffffff, 1, 0, 10, 2);
-
-    // Texture Loader
-    let textureLoader = new THREE.TextureLoader();
-
-    var mars = new THREE.Mesh(
-        new THREE.SphereBufferGeometry(planetsList[planetId].surface.size, 32, 32),
-        new THREE.MeshPhongMaterial({
-            map: textureLoader.load(planetsList[planetId].surface.textures.map)
-        })
-    );
-
-    let galaxyGeometry = new THREE.SphereGeometry(100, 32, 32);
-    let galaxyMaterial = new THREE.MeshBasicMaterial({
-        side: THREE.BackSide
-    });
-    let galaxy = new THREE.Mesh(galaxyGeometry, galaxyMaterial);
-
-    // Load Galaxy Textures
-    textureLoader.crossOrigin = true;
-    textureLoader.load(
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/starfield.png',
-        function (texture) {
-            galaxyMaterial.map = texture;
-            scene.add(galaxy);
-        }
-    );
-
-    // Scene, Camera, Renderer Configuration
-    renderer.setSize(Scontainer.offsetWidth - 26, Scontainer.offsetHeight);
-    $("#" + domElementId).append(renderer.domElement);
-
-    camera.position.set(1, 1, 1);
-    orbitControls.enabled = !cameraAutoRotation;
-
-    scene.add(camera);
-    scene.add(spotLight);
-    scene.add(mars);
-
-    // Light Configurations
-    spotLight.position.set(2, 0, 1);
-
-
-
-    // On window resize, adjust camera aspect ratio and renderer size
-    window.addEventListener('resize', function () {
-        camera.aspect = Scontainer.offsetWidth / Scontainer.offsetHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(Scontainer.offsetWidth - 20, Scontainer.offsetHeight);
-    });
-    // Main render function
-    let render = function () {
-        if (cameraAutoRotation) {
-            cameraRotation += cameraRotationSpeed;
-            camera.position.y = 0;
-            camera.position.x = 2 * Math.sin(cameraRotation);
-            camera.position.z = 2 * Math.cos(cameraRotation);
-            camera.lookAt(mars.position);
-
-        }
-        requestAnimationFrame(render);
-        renderer.render(scene, camera);
-    };
-
-    render();
-}
 },{"./API":1,"./Templates":2,"./make_scene":4}],4:[function(require,module,exports){
 
 
@@ -2007,35 +1930,29 @@ exports.cache = {
 
 },{}],8:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "ejs@2.6.1",
-      "D:\\Omega_T"
-    ]
-  ],
-  "_development": true,
-  "_from": "ejs@2.6.1",
+  "_from": "ejs@^2.4.1",
   "_id": "ejs@2.6.1",
   "_inBundle": false,
   "_integrity": "sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "ejs@2.6.1",
+    "raw": "ejs@^2.4.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "2.6.1",
+    "rawSpec": "^2.4.1",
     "saveSpec": null,
-    "fetchSpec": "2.6.1"
+    "fetchSpec": "^2.4.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz",
-  "_spec": "2.6.1",
-  "_where": "D:\\Omega_T",
+  "_shasum": "498ec0d495655abc6f23cd61868d926464071aa0",
+  "_spec": "ejs@^2.4.1",
+  "_where": "D:\\GitProjects\\Omega_T",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -2044,6 +1961,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -2052,6 +1970,7 @@ module.exports={
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.1.1",

@@ -46,7 +46,7 @@ var planetList=[
         name:"Earth",
         description:"Home planet",
         info:" Aiur , Ravara , Torus",
-        longRead:"cradle of humanity and the most expensive planet to live",
+        longRead:"Cradle of humanity and the most expensive planet to live",
         surface: {
             size: 0.23,
             color:'grey',
