@@ -1,27 +1,27 @@
 var planets = [{
         id: 1,
-        name: "Oliv",
-        starports: ["Delkon", "Clabula"],
+        name: "Earth",
+        starports: ["Aiur", "Ravara", "Torus"],
     },
     {
         id: 2,
-        name: "Phiri 8GV2",
-        starports : ["Hello"],
+        name: "Venus",
+        starports : ["Pridewater", "Brontes", "Braxis"],
     },
     {
         id: 3,
-        name: "Bruphiphus",
-        starports: ["Teranova"],
+        name: "Mercury",
+        starports: ["Alamar"],
     },
     {
         id: 4,
-        name: "Gulara",
-        starports: ["Galendros", "Nadoria"],
+        name: "Mars",
+        starports: ["Mar'Sara", "Zerus"],
     },
     {
         id: 5,
-        name: "Doria O476",
-        starports: ["Yarnis"],
+        name: "Upiter",
+        starports: ["Redstone"],
     }
 ];
 

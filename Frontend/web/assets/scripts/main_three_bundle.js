@@ -3,11 +3,11 @@ function backendGet(url, callback) {
     $.ajax({
         url: url,
         type: 'GET',
-        success: function(data){
+        success: function (data) {
             callback(null, data);
         },
-        error: function() {
-            callback(new Error("Ajax Failed"));
+        error: function () {
+            callback(new Error("Ajax Failed performing GET"));
         }
     })
 }
@@ -16,36 +16,55 @@ function backendPost(url, data, callback) {
     $.ajax({
         url: url,
         type: 'POST',
-        contentType : 'application/json',
+        contentType: 'application/json',
         data: JSON.stringify(data),
-        success: function(data){
+        success: function (data) {
             callback(null, data);
         },
-        error: function() {
-            callback(new Error("Ajax Failed"));
+        error: function () {
+            callback(new Error("Ajax Failed performing POST"));
         }
     })
 }
 
-exports.getPlanets = function(callback) {
+function backendPatch(url, data, callback) {
+    $.ajax({
+        url: url,
+        type: 'PATCH',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (data) {
+            callback(null, data);
+        },
+        error: function() {
+            callback(new Error("Ajax Failed performing PATCH"));
+        }
+    })
+}
+
+exports.getPlanets = function (callback) {
     backendGet("/api/get-planets-list/", callback);
 };
 
-exports.getPlanetsList = function(callback) {
+exports.getPlanetsList = function (callback) {
     backendGet("/api/get-three-planets-list/", callback);
 };
 
-exports.getFlights = function(callback) {
-    backendGet("/api/get-flights-list/", callback);  
+exports.getFlights = function (callback) {
+    backendGet("/api/get-flights-list/", callback);
 };
 
-exports.getFlightsBookingPage = function(flight_info, callback) {
-    backendPost("/pages/booking-page/", flight_info, callback);
+exports.getFlightsFromDB = function (callback) {
+    backendGet("/api/get-flights-list-from-db/", callback);
 }
 
-exports.bookTicket = function(fligh_info, callback) {
-     backendPost("/api/book-flight/", fligh_info, callback);
+exports.bookTicket = function (ticket, callback) {
+    backendPatch("/api/book-ticket/", ticket, callback);
 };
+
+exports.registerUser = function(user, callback) {
+    backendPost("/api/register-user/", user, callback);
+}
 },{}],2:[function(require,module,exports){
 
 var API=require('./API');

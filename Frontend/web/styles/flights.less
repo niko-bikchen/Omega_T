@@ -7,16 +7,10 @@
     margin-top: 90px;
 
     #flights {
-
-
-
         text-align: center;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
         .flight_preview {
-
-
-
             font-size: 1.2em;
 
             margin-top: 20px;
@@ -103,8 +97,12 @@
                         .label_type {
                             padding-top: 10px;
 
-                            text-align: left;
+                            text-align: center;
                             color: @mainColor;
+                        }
+
+                        .label_seats {
+                            font-size: 0.9em;
                         }
 
                         .col-md-6 {
@@ -138,6 +136,26 @@
 
             .label_destination {
                 text-align: right;
+            }
+
+
+
+            .planet_container {
+                overflow: hidden;
+                max-height: 339px;
+                max-width: 289px;
+
+                canvas {
+                    min-width: 289px;
+                    min-height: 339px;
+                }
+            }
+
+            .planet_container_right {
+                canvas {
+                    position: relative;
+                    right: 35px;
+                }
             }
         }
 
@@ -297,7 +315,7 @@
                     #back_btn,
                     #next_btn {
                         border: none;
-                        background-color: #000f94d7;
+                        background-color: @mainColor;
                     }
 
                     #back_btn {
@@ -323,6 +341,26 @@
                         text-align: center;
                         color: red;
                         font-size: 1em;
+                    }
+                }
+
+                #payment {
+                    #ticket_summary {
+                        text-align: center;
+                        font-size: 1.2em;
+                    }
+
+
+                    #pay_btn_container {
+                        padding-left: 30px;
+                        padding-right: 30px;
+
+                        #pay_btn {
+                            margin-top: 10px;
+                            
+                            border: none;
+                            background-color: @mainColor;
+                        }
                     }
                 }
             }
