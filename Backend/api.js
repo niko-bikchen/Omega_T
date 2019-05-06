@@ -35,6 +35,44 @@ exports.getFlightsFromDB = function (req, res) {
         });
 }
 
+exports.checkUser = function (req, res) {
+    var user_info = req.body;
+
+    if ('first_name' in user_info) {
+        User.findOne({
+            user_name: user_info.first_name + " " + user_info.last_name,
+            user_email: user_info.email
+        })
+            .exec()
+            .then(result => {
+                console.log(result);
+                res.send(result);
+            })
+            .catch(error => {
+                console.log(error);
+                res.send({
+                    error: true
+                });
+            });
+    } else {
+        User.findOne({
+            user_email: user_info.email,
+            user_password: user_info.password
+        })
+            .exec()
+            .then(result => {
+                console.log(result);
+                res.send(result);
+            })
+            .catch(error => {
+                console.log(error);
+                res.send({
+                    error: true
+                });
+            });
+    }
+}
+
 exports.bookTicket = function (req, res) {
     var ticket_info = req.body;
     var seats_vacant_string = String(ticket_info.seat_type).toLowerCase() + "_seats_vacant";
@@ -53,8 +91,8 @@ exports.bookTicket = function (req, res) {
     updater[seats_occupied_string] = occupied;
 
     Flight.update({
-            _id: ticket_info.flight._id
-        }, {
+        _id: ticket_info.flight._id
+    }, {
             $set: updater
         })
         .exec()
@@ -74,9 +112,36 @@ exports.bookTicket = function (req, res) {
 
 exports.registerUser = function (req, res) {
     var user_info = req.body;
-    console.log("User created: ", user_info);
+    User
+        .find()
+        .exec()
+        .then(result => {
+            var users_number = result.length;
 
-    res.send({
-        success: true
-    });
+            var new_user = new User({
+                _id: ++users_number,
+                user_name: user_info.first_name + " " + user_info.last_name,
+                user_email: user_info.email,
+                user_password: user_info.password
+            });
+            new_user.save(function (error, result) {
+                if (!error) {
+                    console.log(result);
+                    res.send({
+                        success: true
+                    });
+                } else {
+                    console.log(error);
+                    res.send({
+                        error: true
+                    })
+                }
+            });
+        })
+        .catch(error => {
+            console.log(error);
+            res.send({
+                error: true
+            })
+        });
 }

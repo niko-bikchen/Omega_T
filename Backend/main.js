@@ -21,6 +21,8 @@ function configureEndpoints(app) {
 
     app.get('/api/get-ships-list/', api.getShips);
 
+    app.post('/api/check-user/', api.checkUser);
+
     app.post('/api/register-user/', api.registerUser);
 
     app.patch('/api/book-ticket/', api.bookTicket);

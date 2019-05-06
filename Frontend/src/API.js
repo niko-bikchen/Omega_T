@@ -64,3 +64,7 @@ exports.bookTicket = function (ticket, callback) {
 exports.registerUser = function(user, callback) {
     backendPost("/api/register-user/", user, callback);
 }
+
+exports.checkUser = function(user, callback) {
+    backendPost("/api/check-user/", user, callback);
+}
