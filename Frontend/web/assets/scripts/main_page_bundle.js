@@ -73,18 +73,41 @@ exports.checkUser = function(user, callback) {
 
 var ejs = require('ejs');
 
-exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3 planet_container\" id=\"planet\"></div>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\"><%= flight.duration %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <div class=\"row\">\r\n                            <span class=\"col-md-12 lux\">\r\n                                <span class=\"row\">\r\n                                    <span class=\"col-md-2 label_type\">Lux</span>\r\n                                    <span class=\"col-md-4 label_seats\">Vacant seats: <%= flight.lux_seats_vacant %>. Price: <%= flight.lux_seat_price %>UI</span>\r\n                                    <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                </span>\r\n                            </span>\r\n                            <span class=\"col-md-12 standard\">\r\n                                <span class=\"row\">\r\n                                    <span class=\"col-md-2 label_type\">Standard</span>\r\n                                    <span class=\"col-md-4 label_seats\">Vacant seats: <%= flight.standard_seats_vacant %>. Price: <%= flight.standard_seat_price %>UI</span>\r\n                                    <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                </span>\r\n                            </span>\r\n                        </div>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n            </span>\r\n        </span>\r\n        <div class=\"col-md-3 planet_container planet_container_right\" id=\"planet2\"></div>\r\n    </div>\r\n</div>");
+exports.flight_preview = ejs.compile("<div class=\"flight_preview\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3 planet_container\" id=\"planet\"></div>\r\n        <span class=\"col-md-6 flight_info\">\r\n            <span class=\"row\">\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row time_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure time:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival time:</span>\r\n                        <span class=\"col-md-3 time_start\"><%= flight.time_start %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-2 duration\"><%= flight.duration %> UST</span>\r\n                        <span class=\"col-md-2 arrow\">&#8594;&#160;&#160;&#8594;&#160;&#160;&#8594;</span>\r\n                        <span class=\"col-md-3 time_end\"><%= flight.time_end %> UST</span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row date_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure date:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival date:</span>\r\n                        <span class=\"col-md-6 date_start\"><%= flight.date_start.day %>/<%= flight.date_start.month %>/<%= flight.date_start.year %></span>\r\n                        <span class=\"col-md-6 date_end\"><%= flight.date_end.day %>/<%= flight.date_end.month %>/<%= flight.date_end.year %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"row places_details\">\r\n                        <span class=\"col-md-6 label label_start\">Departure point:</span>\r\n                        <span class=\"col-md-6 label label_destination\">Arrival point:</span>\r\n                        <span class=\"col-md-6 place_start\"><%= flight.start_planet %> - <%= flight.start_starport %></span>\r\n                        <span class=\"col-md-6 place_end\"><%= flight.destination_planet %> - <%= flight.destination_starport %></span>\r\n                    </span>\r\n                </span>\r\n                <span class=\"col-md-12\">\r\n                        <span class=\"row ship_details\">\r\n                            <span class=\"col-md-12 label ship_name_label\">Ship name:</span>\r\n                            <span class=\"col-md-12 ship_name\"><%= flight.ship %></span>\r\n                        </span>\r\n                    </span>\r\n                <span class=\"col-md-12\">\r\n                    <span class=\"flight_types\">\r\n                        <div class=\"row\">\r\n                            <span class=\"col-md-12 lux\">\r\n                                <span class=\"row\">\r\n                                    <span class=\"col-md-2 label_type\">Lux</span>\r\n                                    <span class=\"col-md-4 label_seats\">Vacant seats: <%= flight.lux_seats_vacant %>. Price: <%= flight.lux_seat_price %>UI</span>\r\n                                    <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_lux\">Buy</button></span>\r\n                                </span>\r\n                            </span>\r\n                            <span class=\"col-md-12 standard\">\r\n                                <span class=\"row\">\r\n                                    <span class=\"col-md-2 label_type\">Standard</span>\r\n                                    <span class=\"col-md-4 label_seats\">Vacant seats: <%= flight.standard_seats_vacant %>. Price: <%= flight.standard_seat_price %>UI</span>\r\n                                    <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block buy_btn buy_standard\">Buy</button></span>\r\n                                </span>\r\n                            </span>\r\n                        </div>\r\n                    <span>\r\n                </span>\r\n            </span>\r\n        </span>\r\n            </span>\r\n        </span>\r\n        <div class=\"col-md-3 planet_container planet_container_right\" id=\"planet2\"></div>\r\n    </div>\r\n</div>");
 exports.flight_booking = ejs.compile("<div id=\"flight_booking\" class=\"col-md-12\">\r\n    <div id=\"templates\">\r\n        <span class=\"col-md-1\" id=\"seat_template\" style=\"display: none;\">\r\n            <button class=\"btn btn-block seat seat_one\"></button>\r\n            <button class=\"btn btn-block seat seat_two\"></button>\r\n        </span>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-12\" id=\"status\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6\" id=\"progress\">\r\n                    <ul>\r\n                        <li id=\"seat_picking\">Pick a place</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"passanger_data\">Passanger data</li>\r\n                        <li class=\"arrow\">&#x291E;</li>\r\n                        <li id=\"pay\">Pay for the ticket</li>\r\n                    </ul>\r\n                </div>\r\n                <div class=\"col-md-6\" id=\"current_passenger_info\">\r\n                    <span id=\"seat_type\"></span>\r\n                    <span id=\"seat_number\"></span>\r\n                    <span id=\"first_second_name\"></span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-12\" id=\"booking_steps\">\r\n            <div class=\"container-fluid\" id=\"seats\">\r\n                <div class=\"row\">\r\n                    <span class=\"col-md-12\" id=\"first_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                    <span class=\"col-md-12\" id=\"second_row\">\r\n                        <span class=\"row\">\r\n                            <span class=\"col-md-2 restroom\">\r\n                                <p>WC</p>\r\n                            </span>\r\n                        </span>\r\n                    </span>\r\n                    <span class=\"col-md-12\"><button class=\"btn btn-primary btn-block\" id=\"next_btn\" style=\"display: none;\">Next&#x291E;</button></span>\r\n                </div>\r\n            </div>\r\n            <div class=\"container-fluid\" id=\"personal_info\" style=\"display:none;\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-group mb-3 col-md-12\" id=\"first_last_name_group\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"first_and_last_name_label\">First and last name</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\" id=\"first_name\">\r\n                        <input type=\"text\" class=\"form-control\" id=\"last_name\">\r\n                    </div>\r\n                    <div class=\"input-group mb-3 col-md-12\" id=\"email_group\">\r\n                        <div class=\"input-group-prepend\">\r\n                            <span class=\"input-group-text\" id=\"email_label\">Email</span>\r\n                        </div>\r\n                        <input type=\"text\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" id=\"email\">\r\n                    </div>\r\n                    <span class=\"col-md-12\" id=\"error_msg\" style=\"display: none;\">\r\n                        Fill all fields to proceed\r\n                    </span>\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"row\">\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\" id=\"back_btn\">&#x291D;Back</button></span>\r\n                            <span class=\"col-md-6\"><button class=\"btn btn-primary btn-block\" id=\"next_btn\">Next&#x291E;</button></span>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"container\" id=\"payment\" style=\"display: none;\">\r\n                <div class=\"row\">\r\n                    <span class=\"col-md-12\" id=\"ticket_summary\"></span>\r\n                    <span class=\"col-md-12\" id=\"pay_btn_container\"><a class=\"btn btn-primary btn-block\" id=\"pay_btn\" href=\"/\">Pay</a></span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 },{"ejs":6}],3:[function(require,module,exports){
 var Templates = require('./Templates');
 var API = require('./API');
 var planetsList = null;
-var makeScene2=require('./make_scene');
+var makeScene2 = require('./make_scene');
+var logged_in = false;
 $(function () {
     var $input_from_p = $('#from_p');
     var $input_from_s = $('#from_s');
     var $input_to_p = $('#to_p');
     var $input_to_s = $('#to_s');
+
+    if (JSON.parse(localStorage.getItem('this_user'))) {
+        var this_user = JSON.parse(localStorage.getItem('this_user'));
+        $('header #login_btn').remove();
+        $('header .row').append("<a href='/login' class='col-md-2 btn' id='login_btn'></a>");
+        $('header .row').append("<button class='col-md-2 btn' id='logout_btn'>Log out</button>");
+        $('header #login_btn').text(this_user.user_name);
+        $('header #login_btn').addClass('disabled');
+        $('header #login_btn').css('opacity', '1');
+        $('header #login_btn').css('font-size', '0.9em');
+        logged_in = true;
+
+        $('header #logout_btn').on('click', function () {
+            localStorage.removeItem('this_user');
+            logged_in = false;
+            location.reload();
+        });
+    } else {
+        $('header #login_btn').remove();
+        $('header #logout_btn').remove();
+        $('header .row').append('<a href="/login" class="col-md-4 btn" id="login_btn">Login</a>');
+    }
 
     var flights_list = null;
     var planets_list = null;
@@ -146,6 +169,25 @@ $(function () {
         } else {
             alert("An error occured while getting planets data");
         }
+    });
+
+    $('#utils #clear_btn').on('click', function () {
+        $input_from_p.val('');
+        $input_from_s.val('');
+        $input_to_p.val('');
+        $input_to_s.val('');
+    });
+
+    $('#utils #swap_btn').on('click', function () {
+        var help = '';
+
+        help = $input_from_p.val();
+        $input_from_p.val($input_to_p.val());
+        $input_to_p.val(help);
+
+        help = $input_from_s.val();
+        $input_from_s.val( $input_to_s.val());
+        $input_to_s.val(help);
     });
 
     $input_from_p.keypress(function (event) {
@@ -308,8 +350,8 @@ function handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, fl
                 let Scontainer1 = document.getElementById('planet1' + counter.toString());
                 console.log(Scontainer1);
                 let Scontainer2 = document.getElementById('planet2' + counter.toString());
-                makeScene2(planetsList[available_flights[counter].start_planet_id],Scontainer1);
-                makeScene2(planetsList[available_flights[counter].destination_planet_id],Scontainer2);
+                makeScene2(planetsList[available_flights[counter].start_planet_id], Scontainer1);
+                makeScene2(planetsList[available_flights[counter].destination_planet_id], Scontainer2);
                 counter++;
 
             });
@@ -361,7 +403,7 @@ function addSeats($booking_panel, ticket) {
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find('.seat_one').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_one'));
             $copy.find('.seat_one').css('color', 'white');
             $copy.find('.seat_one').css('background-color', '#000f94d7');
@@ -369,7 +411,7 @@ function addSeats($booking_panel, ticket) {
 
         }
         $copy.find('.seat_two').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_two'));
             $copy.find('.seat_two').css('color', 'white');
             $copy.find('.seat_two').css('background-color', '#000f94d7');
@@ -380,14 +422,14 @@ function addSeats($booking_panel, ticket) {
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find('.seat_one').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_one'));
             $copy.find('.seat_one').css('color', 'white');
             $copy.find('.seat_one').css('background-color', '#000f94d7');
             $copy.find('.seat_one').css('opacity', '1');
         }
         $copy.find('.seat_two').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_two'));
             $copy.find('.seat_two').css('color', 'white');
             $copy.find('.seat_two').css('background-color', '#000f94d7');
@@ -406,10 +448,22 @@ function addSeats($booking_panel, ticket) {
 
         //$(this).prop('disabled', true);
         disable($(this));
-        $(this).css('background-color', '#000f94d7');
+        $(this).css('background-color', 'rgb(240, 12, 12)');
         $(this).css('opacity', 'initial');
         $(this).css('color', 'white');
         $(this).attr('pressed', 'true');
+
+        if (logged_in) {
+            var this_user = JSON.parse(localStorage.getItem('this_user'));
+            var user_name = String(this_user.user_name).split(' ');
+
+            $('#personal_info #first_name').val(user_name[0]);
+            $('#personal_info #first_name').addClass('success');
+            $('#personal_info #last_name').val(user_name[1]);
+            $('#personal_info #last_name').addClass('success');
+            $('#personal_info #email').val(this_user.user_email);
+            $('#personal_info #email').addClass('success');
+        }
 
         $booking_panel.find('#seats #next_btn').removeAttr('style');
 
@@ -475,7 +529,7 @@ function addSeats($booking_panel, ticket) {
                 $('#status #progress #passanger_data').css('color', 'black');
                 $('#status #progress #pay').css('color', '#000f94d7');
                 hide($('#status #current_passenger_info'));
-                $('#payment #ticket_summary').text("Seat type: " + ticket.seat_type + ". Seat number: " + ticket.seat_number + ". Price: " + ticket.price + ". " + ticket.passenger_first_name + " " + ticket.passenger_last_name);
+                $('#payment #ticket_summary').text("Seat type: " + ticket.seat_type + ". Seat number: " + ticket.seat_number + ". Price: " + ticket.price + "UI. " + ticket.passenger_first_name + " " + ticket.passenger_last_name);
 
                 $('#payment #pay_btn').on('click', function () {
                     API.bookTicket(ticket);

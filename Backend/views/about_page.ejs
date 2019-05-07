@@ -1,7 +1,51 @@
-<% include common_views/header.ejs %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= pageTitle %></title>
+
+    <link rel="shortcut icon" href="assets\images\opsi.ico"/>
+
+    <link rel="stylesheet/less" type="text/css" media="screen" href="styles/main.less"/>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/start/jquery-ui.css">
+
+    <script src="three.js-master/build/three.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.6.0/Tween.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.6.0/Tween.min.js"></script>
+
+    <script src="./three.js-master/examples/jsm/loaders/GLTFLoader.js"></script>
+    <script src="./three.js-master/examples/js/controls/TrackballControls.js"></script>
+    <script src="three-js-boilerplate-example-obj-loader-finish/public/assets/OrbitControls.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+    <style>
+        html {
+            background-image: url('../assets/images/sum_space.jpg')
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="row">
+            <a href="/about" class="col-md-4 btn" id="about_btn">About</a>
+            <a href="/starmap" class="col-md-4 btn btn-dark" id="starmap_btn">Starmap</a>
+            <a href="/login" class="col-md-4 btn" id="login_btn">Login</a>
+        </div>
+    </header>
 
     <div class="container-fluid" id="about_page_contents">
-    <img src="assets/images/sum_space.jpg">
         <div id="about_window">
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.

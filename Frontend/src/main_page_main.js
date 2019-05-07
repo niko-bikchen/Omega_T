@@ -1,12 +1,35 @@
 var Templates = require('./Templates');
 var API = require('./API');
 var planetsList = null;
-var makeScene2=require('./make_scene');
+var makeScene2 = require('./make_scene');
+var logged_in = false;
 $(function () {
     var $input_from_p = $('#from_p');
     var $input_from_s = $('#from_s');
     var $input_to_p = $('#to_p');
     var $input_to_s = $('#to_s');
+
+    if (JSON.parse(localStorage.getItem('this_user'))) {
+        var this_user = JSON.parse(localStorage.getItem('this_user'));
+        $('header #login_btn').remove();
+        $('header .row').append("<a href='/login' class='col-md-2 btn' id='login_btn'></a>");
+        $('header .row').append("<button class='col-md-2 btn' id='logout_btn'>Log out</button>");
+        $('header #login_btn').text(this_user.user_name);
+        $('header #login_btn').addClass('disabled');
+        $('header #login_btn').css('opacity', '1');
+        $('header #login_btn').css('font-size', '0.9em');
+        logged_in = true;
+
+        $('header #logout_btn').on('click', function () {
+            localStorage.removeItem('this_user');
+            logged_in = false;
+            location.reload();
+        });
+    } else {
+        $('header #login_btn').remove();
+        $('header #logout_btn').remove();
+        $('header .row').append('<a href="/login" class="col-md-4 btn" id="login_btn">Login</a>');
+    }
 
     var flights_list = null;
     var planets_list = null;
@@ -68,6 +91,25 @@ $(function () {
         } else {
             alert("An error occured while getting planets data");
         }
+    });
+
+    $('#utils #clear_btn').on('click', function () {
+        $input_from_p.val('');
+        $input_from_s.val('');
+        $input_to_p.val('');
+        $input_to_s.val('');
+    });
+
+    $('#utils #swap_btn').on('click', function () {
+        var help = '';
+
+        help = $input_from_p.val();
+        $input_from_p.val($input_to_p.val());
+        $input_to_p.val(help);
+
+        help = $input_from_s.val();
+        $input_from_s.val( $input_to_s.val());
+        $input_to_s.val(help);
     });
 
     $input_from_p.keypress(function (event) {
@@ -230,8 +272,8 @@ function handleSearch($input_from_p, $input_from_s, $input_to_p, $input_to_s, fl
                 let Scontainer1 = document.getElementById('planet1' + counter.toString());
                 console.log(Scontainer1);
                 let Scontainer2 = document.getElementById('planet2' + counter.toString());
-                makeScene2(planetsList[available_flights[counter].start_planet_id],Scontainer1);
-                makeScene2(planetsList[available_flights[counter].destination_planet_id],Scontainer2);
+                makeScene2(planetsList[available_flights[counter].start_planet_id], Scontainer1);
+                makeScene2(planetsList[available_flights[counter].destination_planet_id], Scontainer2);
                 counter++;
 
             });
@@ -283,7 +325,7 @@ function addSeats($booking_panel, ticket) {
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find('.seat_one').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_one'));
             $copy.find('.seat_one').css('color', 'white');
             $copy.find('.seat_one').css('background-color', '#000f94d7');
@@ -291,7 +333,7 @@ function addSeats($booking_panel, ticket) {
 
         }
         $copy.find('.seat_two').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_two'));
             $copy.find('.seat_two').css('color', 'white');
             $copy.find('.seat_two').css('background-color', '#000f94d7');
@@ -302,14 +344,14 @@ function addSeats($booking_panel, ticket) {
 
         $copy = giveTemplateCopy($seat_template, 'seat_block');
         $copy.find('.seat_one').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_one'));
             $copy.find('.seat_one').css('color', 'white');
             $copy.find('.seat_one').css('background-color', '#000f94d7');
             $copy.find('.seat_one').css('opacity', '1');
         }
         $copy.find('.seat_two').text(++k);
-        if(seatIsOccupied(occupied_seats, k)) {
+        if (seatIsOccupied(occupied_seats, k)) {
             disable($copy.find('.seat_two'));
             $copy.find('.seat_two').css('color', 'white');
             $copy.find('.seat_two').css('background-color', '#000f94d7');
@@ -328,10 +370,22 @@ function addSeats($booking_panel, ticket) {
 
         //$(this).prop('disabled', true);
         disable($(this));
-        $(this).css('background-color', '#000f94d7');
+        $(this).css('background-color', 'rgb(240, 12, 12)');
         $(this).css('opacity', 'initial');
         $(this).css('color', 'white');
         $(this).attr('pressed', 'true');
+
+        if (logged_in) {
+            var this_user = JSON.parse(localStorage.getItem('this_user'));
+            var user_name = String(this_user.user_name).split(' ');
+
+            $('#personal_info #first_name').val(user_name[0]);
+            $('#personal_info #first_name').addClass('success');
+            $('#personal_info #last_name').val(user_name[1]);
+            $('#personal_info #last_name').addClass('success');
+            $('#personal_info #email').val(this_user.user_email);
+            $('#personal_info #email').addClass('success');
+        }
 
         $booking_panel.find('#seats #next_btn').removeAttr('style');
 
@@ -397,7 +451,7 @@ function addSeats($booking_panel, ticket) {
                 $('#status #progress #passanger_data').css('color', 'black');
                 $('#status #progress #pay').css('color', '#000f94d7');
                 hide($('#status #current_passenger_info'));
-                $('#payment #ticket_summary').text("Seat type: " + ticket.seat_type + ". Seat number: " + ticket.seat_number + ". Price: " + ticket.price + ". " + ticket.passenger_first_name + " " + ticket.passenger_last_name);
+                $('#payment #ticket_summary').text("Seat type: " + ticket.seat_type + ". Seat number: " + ticket.seat_number + ". Price: " + ticket.price + "UI. " + ticket.passenger_first_name + " " + ticket.passenger_last_name);
 
                 $('#payment #pay_btn').on('click', function () {
                     API.bookTicket(ticket);
