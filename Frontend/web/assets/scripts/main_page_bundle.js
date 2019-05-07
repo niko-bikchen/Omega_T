@@ -119,14 +119,6 @@ $(function () {
     //$input_to_s.prop('disabled', true);
     disable($input_to_s);
 
-    // API.getFlights(function (err, data) {
-    //     if (!err) {
-    //         flights_list = data;
-    //     } else {
-    //         alert("An error occured while getting flights data");
-    //     }
-    // });
-
     API.getPlanetsList(function (err, data) {
         if (!err) {
             planetsList = data.planetsList2;
@@ -637,19 +629,6 @@ function seatIsOccupied(occupied_seats, seat_number) {
 
     return false;
 }
-
-// $('#flights').on('click', 'div.flight_preview span.flight_types button.buy_btn', function () {
-//     // var seat_type = $(this).attr('seat_type');
-
-//     // var html_code = Templates.flight_booking({
-//     //     flight: flights_list.flights[$(this).attr('flight_id') - 1]
-//     // });
-
-//     // console.log(html_code);
-//     // console.log(seat_type);
-// });
-
-
 },{"./API":1,"./Templates":2,"./make_scene":4}],4:[function(require,module,exports){
 
 
