@@ -1,230 +1,239 @@
 #main_page_contents {
-    font-family: Spaceman, sans-serif;
+	font-family: Spaceman, sans-serif;
 
-    #logo {
-        margin-top: 30px;
-        margin-bottom: 30px;
+	#logo {
+		margin-top: 0;
+		margin-bottom: 30px;
 
-        text-align: center;
+		text-align: center;
 
-        img {
-            height: 150px;
-        }
-    }
+		img {
+			height: 150px;
+		}
+	}
 
-    #search_bar {
-        margin-top: 15px;
+	#company_name {
+		margin-top: 10px;
 
-        text-align: center;
+		text-align: center;
+		font-size: 3em;
+	}
 
-        .input-group-text {
-            border-radius: 0;
-            background-color: whitesmoke;
-        }
+	#search_bar {
+		margin-top: 15px;
 
-        .form-control {
-            border-radius: 0;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 1.2em;
-        }
+		text-align: center;
 
-        #from {
+		.input-group-text {
+			border-radius: 0;
+			background-color: whitesmoke;
+		}
 
-            #from_label {
-                padding-top: 5px;
-                padding-right: 8px;
-                padding-left: 0;
+		.form-control {
+			border-radius: 0;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 1.2em;
+		}
 
-                color: @mainColor;
-                font-family: Galaxy, sans-serif;
-                font-size: 1.8vw;
+		#from {
+			#from_label {
+				padding-top: 5px;
+				padding-right: 8px;
+				padding-left: 0;
 
-                text-align: left;
-            }
+				color: @mainColor;
+				font-family: Galaxy, sans-serif;
+				font-size: 1.8vw;
 
-            #from_starport {
-                padding-left: 0;
-                padding-right: 0;
+				text-align: left;
+			}
 
-                .input-group-text {
-                    border-left: none;
-                    border-right: none;
-                }
+			#from_starport {
+				padding-left: 0;
+				padding-right: 0;
 
-                .form-control {
-                    padding-right: 50px;
+				.input-group-text {
+					border-left: none;
+					border-right: none;
+				}
 
-                    background-image: url('../assets/images/finish.png');
-                    background-position: right;
-                    background-size: 8%;
-                    background-repeat: no-repeat;
-                    background-position-x: 99%;
+				.form-control {
+					padding-right: 50px;
 
-                    border-top-right-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                }
-            }
+					background-image: url('../assets/images/finish.png');
+					background-position: right;
+					background-size: 8%;
+					background-repeat: no-repeat;
+					background-position-x: 99%;
 
-            #from_planet {
-                padding-right: 0;
-                padding-left: 0;
+					border-top-right-radius: 10px;
+					border-bottom-right-radius: 10px;
+				}
+			}
 
-                .input-group-text {
-                    border-top-left-radius: 10px;
-                    border-bottom-left-radius: 10px;
-                }
+			#from_planet {
+				padding-right: 0;
+				padding-left: 0;
 
-                .form-control {
-                    padding-right: 50px;
+				.input-group-text {
+					border-top-left-radius: 10px;
+					border-bottom-left-radius: 10px;
+				}
 
-                    background-image: url('../assets/images/planet.png');
-                    background-position: right;
-                    background-size: 10%;
-                    background-repeat: no-repeat;
-                    background-position-x: 97%;
-                }
-            }
-        }
+				.form-control {
+					padding-right: 50px;
 
-        #to {
+					background-image: url('../assets/images/planet.png');
+					background-position: right;
+					background-size: 10%;
+					background-repeat: no-repeat;
+					background-position-x: 97%;
+				}
+			}
+		}
 
-            #to_label {
-                padding-top: 0px;
-                padding-right: 19px;
-                padding-left: 0;
+		#to {
+			#to_label {
+				padding-top: 0px;
+				padding-right: 19px;
+				padding-left: 0;
 
-                color: @mainColor;
-                font-family: Galaxy, sans-serif;
-                font-size: 1.8vw;
+				color: @mainColor;
+				font-family: Galaxy, sans-serif;
+				font-size: 1.8vw;
 
-                text-align: right;
-            }
+				text-align: right;
+			}
 
-            #to_starport {
-                padding-left: 0;
-                padding-right: 0;
+			#to_starport {
+				padding-left: 0;
+				padding-right: 0;
 
-                .input-group-text {
-                    border-left: none;
-                    border-right: none;
-                }
+				.input-group-text {
+					border-left: none;
+					border-right: none;
+				}
 
-                .form-control {
-                    padding-right: 50px;
+				.form-control {
+					padding-right: 50px;
 
-                    background-image: url('../assets/images/finish.png');
-                    background-position: right;
-                    background-size: 8%;
-                    background-repeat: no-repeat;
-                    background-position-x: 99%;
+					background-image: url('../assets/images/finish.png');
+					background-position: right;
+					background-size: 8%;
+					background-repeat: no-repeat;
+					background-position-x: 99%;
 
-                    border-top-right-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                }
-            }
+					border-top-right-radius: 10px;
+					border-bottom-right-radius: 10px;
+				}
+			}
 
-            #to_planet {
-                padding-right: 0;
-                padding-left: 0;
+			#to_planet {
+				padding-right: 0;
+				padding-left: 0;
 
-                .input-group-text {
-                    border-top-left-radius: 10px;
-                    border-bottom-left-radius: 10px;
-                }
+				.input-group-text {
+					border-top-left-radius: 10px;
+					border-bottom-left-radius: 10px;
+				}
 
-                .form-control {
-                    padding-right: 50px;
+				.form-control {
+					padding-right: 50px;
 
-                    background-image: url('../assets/images/planet.png');
-                    background-position: right;
-                    background-size: 10%;
-                    background-repeat: no-repeat;
-                    background-position-x: 97%;
-                }
-            }
-        }
+					background-image: url('../assets/images/planet.png');
+					background-position: right;
+					background-size: 10%;
+					background-repeat: no-repeat;
+					background-position-x: 97%;
+				}
+			}
+		}
 
-        #search_btn {
-            margin-top: 25px;
+		#search_btn {
+			margin-top: 25px;
 
-            width: 20%;
-            height: 110%;
+			width: 20%;
+			height: 110%;
 
-            color: white;
-            font-size: 1.9vw;
+			color: white;
+			font-size: 1.9vw;
 
-            border: none;
-            background-color: @mainColor;
+			border: none;
+			background-color: @mainColor;
 
-            background-image: url('../assets/images/tie.png');
-            background-position-x: 130%;
-            background-position-y: 30%;
-            background-size: 20%;
-            background-repeat: no-repeat;
+			background-image: url('../assets/images/tie.png');
+			background-position-x: 130%;
+			background-position-y: 30%;
+			background-size: 20%;
+			background-repeat: no-repeat;
+		}
 
-        }
+		#search_btn:hover {
+			color: white;
 
-        #search_btn:hover {
-            color: white;
+			background-position-x: -30%;
 
-            background-position-x: -30%;
+			transition: 1s all ease-in-out;
+		}
 
-            transition: 1s all ease-in-out;
-        }
+		#search_btn:active {
+			background-color: darkblue !important;
 
-        #search_btn:active {
-            background-color: darkblue !important;
+			transition: .2s all ease-in-out;
+		}
 
-            transition: .2s all ease-in-out;
-        }
+		input[type=date]::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			display: none;
+		}
 
+		#date_container {
+			font-family: Galaxy;
+			text-align: center;
 
-        #date_container {
-            font-family: Galaxy;
-            text-align: center;
+			#date {
+				margin-top: 10px;
+				color: @mainColor;
+				text-align: center;
+				font-size: 1.4em;
+				border-style: none;
+				border: 2px solid @mainColor;
+				border-radius: 10px;
+			}
 
-            #date {
-                margin-top: 10px;
-                color: @mainColor;
-                text-align: center;
-                font-size: 1.4em;
-                border-style: none;
-                border: 2px solid @mainColor;
-                border-radius: 10px;
-            }
+			span {
+				color: @mainColor;
+				font-size: 1.8vw;
+			}
+		}
 
-            span {
-                color: @mainColor;
-                font-size: 1.8vw;
-            }
-        }
+		#utils {
+			margin-bottom: 25px;
+			margin-top: 10px;
 
-        #utils {
-            margin-bottom: 25px;
-            margin-top: 10px;
+			.swap,
+			.clear {
+				padding-left: 60px;
+				padding-right: 60px;
+			}
 
-            .swap, .clear {
-                padding-left: 60px;
-                padding-right: 60px;
-            }
+			button {
+				color: white;
+				background-color: @mainColor;
+			}
+		}
 
-            button {
-                color: white;
-                background-color: @mainColor;
-            }
-        }
+		#error_message {
+			display: none;
 
-        #error_message {
-            display: none;
+			margin: 10px;
 
-            margin: 10px;
-
-            #message {
-                text-align: center;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                font-size: 1.2em;
-                color: red;
-            }
-        }
-    }
+			#message {
+				text-align: center;
+				font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+				font-size: 1.2em;
+				color: red;
+			}
+		}
+	}
 }
